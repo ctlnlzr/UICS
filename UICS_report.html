@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+</head>
+<body prefix="schema: http://schema.org">
+<header>
+    <div class="banner">
+        <div class="status">Echipa 3</div>
+    </div>
+    <h1>UICS</h1>
+</header>
+
+<ol role="directory">
+    <li><a href="#abstract"><span>1. </span>Abstract</a></li>
+    <li><a href="#introduction"><span>2. </span>Introduction</a></li>
+    <li><a href="#overview"><span>3. </span>Application Overview</a>
+        <ol role="directory">
+            <li><a href="#application"><span>3.2 </span> Application Architecture</a></li>
+            <li><a href="#frontend"><span>3.3 </span>Frontend Architecture</a></li>
+            <li><a href="#backend"><span>3.4 </span>Backend Architecture</a>
+                <ol role="directory">
+                    <li><a href="#backendArchitecture"><span>3.4.1 </span>Architecture</a></li>
+                    <li><a href="#apiSpecification"><span>3.4.2 </span>Api Specification</a></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li><a href="#userInteraction"><span>4. </span>User Interaction</a></li>
+    <li><a href="#languageAndOntology"><span>5. </span>Controlled language & Ontology</a></li>
+    <li><a href="#biblio-references"><span>6. </span>References</a></li>
+</ol>
+
+<div role="contentinfo">
+    <dl>
+        <dt>Authors</dt>
+        <dd>
+            <a href="https://www.linkedin.com/in/c%C4%83t%C4%83lina-laz%C4%83r-372bb9204/">Lazăr Cătălina</a> &amp;
+            <a href="https://www.linkedin.com/in/elisa-chicos-796647239/">Chicoș Elisa</a> - Echipa 3
+        </dd>
+        <dt>Project progress</dt>
+        <dd>
+            <a href="https://echipa-trei-uics.mynotice.io/"> Blog - UI component smart generator </a> is a website which
+            tracks
+            the progress of this project.
+        </dd>
+    </dl>
+</div>
+
+
+<section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <h2><span>1. </span>Abstract</h2>
+    <p>
+        This project introduces an ontology based on OWL to articulate interactive input/output controls and components
+        within UI component APIs, leveraging popular framework <a role="doc-biblioref" href="#ref-ionic"> Ionic UI Components</a>,
+        particularly in the context of Angular applications. The developed knowledge model employs controlled language
+        constructs, offering the means to specify design intentions using keywords. It is designed to intelligently
+        generate web interface controls through a SPARQL endpoint, facilitating the creation of sections
+        with defined roles.
+    </p>
+</section>
+<section id="introduction" role="doc-introduction">
+    <h2><span>2. </span>Introduction</h2>
+    <p>
+        In web development, the creation of interactive and attractive user interfaces relies
+        on UI component libraries and frameworks. This projects addresses the challenge of describing a design
+        and generating corresponding interface controls using library Ionic UI Components for Angular.
+    </p>
+
+    <p>
+        The motivation cone from the need to provide designers a more semantically rich means of specifying web elements.
+        To achieve this, we propose the development of an ontology grounded in <a role="doc-biblioref" href="ref-own"> OWL </a>,
+        offering a structured knowledge model. This model, using controlled language constructs,
+        enables the utilization of descriptive keywords and parameters to express design requirements.
+        By utilizing a SPARQL endpoint, the ontology aims to intelligently interpret these specifications and generate
+        appropriate controls.
+    </p>
+
+    <p>
+        Through this project, we present a practical validation through the implementation
+        and testing of the proposed ontology in at least two distinct use cases.
+    </p>
+
+
+</section>
+<section id="overview">
+    <!-- review? -->
+    <h2><span>3. </span>Application Overview</h2>
+    <section id="application">
+        <!-- review? -->
+        <h3><span>3.1. </span>Application Architecture</h3>
+        <figure typeof="schema:MediaObject:ImageObject:diagram" role="doc-example" id="architectureOverview">
+            <img src="images/appOverview.png" alt="Application Overview" class="appDiagram">
+            <figcaption>System Architecture: User Interface Controlled System (UICS)</figcaption>
+        </figure>
+        <p>
+            The architecture of UICS is delineated into distinct layers, each serving an important role in the overall
+            functionality of the system.
+        </p>
+
+        <h4>Frontend</h4>
+        <p>
+            The Frontend component of UICS is responsible for presenting the user interface, facilitating user
+            interaction, and collecting the controlled language input. It provides a user-friendly method for users to
+            articulate their design intentions.
+        </p>
+
+        <h4>Backend</h4>
+        <p>
+            The Backend layer's main purpose is to process the user's controlled language input and generating Ionic UI
+            Components-based code accordingly. It serves as the computational engine that transforms abstract design
+            descriptions into interface elements.
+        </p>
+
+        <h4>Database</h4>
+        <p>
+            UICS leverages two distinct storage systems to manage its data effectively.
+        </p>
+        <p>
+            RDF Storage System (<a role="doc-biblioref" href="#ref-fuseki">Apache Jena Fuseki</a>):
+            The RDF storage system is used for persistently storing and managing Resource Description Framework
+            (RDF) data, namely the ontology we create to express the relations between Ionic UI components.
+            Apache Jena Fuseki serves as the database engine.
+        </p>
+        <p>
+            Cache Storage (MySQL):
+            In addition to the RDF storage, UICS utilizes a MySQL-based Cache Storage system. This system provides a
+            quick and efficient means of storing and retrieving frequently accessed data, optimizing the performance of
+            the backend processes.
+        </p>
+    </section>
+    <section id="frontend">
+        <h3><span>3.2. </span>Frontend Architecture</h3>
+        <p>
+            This architectural design ensures a simple, user-friendly experience, allowing individuals to describe
+            their webpage visions effortlessly. The architecture of the system is designed with a separation between the
+            User Interface (UI) and the Backend, encouraging modularity. The system empowers users to
+            articulate their webpage design intentions through a controlled language, interact with the resulting code, and access
+            information about the language conventions.
+        </p>
+
+        <figure typeof="schema:MediaObject:ImageObject:diagram" role="doc-example" id="frontendArchitectureOverview">
+            <img src="images/frontend.png" alt="Frontend Architecture Overview" class="frontendDiagram">
+            <figcaption>Frontend Architecture Overview</figcaption>
+        </figure>
+
+        <h4>Main Page</h4>
+        <p>
+            The main page of the User Interface serves as the central hub for users to express their webpage design
+            specifications.
+            It comprises the following components:
+        </p>
+
+        <ul>
+            <li>
+                <h5>Input Text Area</h5>
+                <p>
+                    Users can describe the structure and content of the webpage they want to create using natural
+                    language.
+                    This controlled language facilitates communication between the user and the system, enabling a
+                    effortless design process.
+                </p>
+            </li>
+            <li>
+                <h5>Output Area</h5>
+                <p>
+                    The system dynamically generates and displays the resulting code based on the user's input.
+                    This allows users to view and understand the code corresponding to their design description.
+                </p>
+            </li>
+            <li>
+                <h5>Info Link</h5>
+                <p>
+                    A link is provided to an information page that explains the conventions of the controlled
+                    language.
+                    This page serves as a guide, helping users create precise descriptions for their
+                    webpage elements.
+                </p>
+            </li>
+        </ul>
+
+        <h4>Info Page</h4>
+        <p>
+            The Info Page offers comprehensive guidance on the controlled language that users should employ to describe
+            their webpage. It covers keywords, and parameters, providing users with the necessary information to
+            communicate their design intentions.
+        </p>
+    </section>
+    <section id="backend">
+        <h3><span>3.3. </span>Backend Architecture</h3>
+        <section id="backendArchitecture">
+            <h4><span>3.3.1 </span>Architecture</h4>
+
+            <figure typeof="schema:MediaObject:ImageObject:diagram" role="doc-example" id="backendArchitectureOverview">
+                <img src="images/backend.png" alt="Backend Architecture Overview" class="backendDiagram">
+                <figcaption>Backend Architecture Overview</figcaption>
+            </figure>
+
+            <p>
+                The backend architecture of the system is designed to handle HTTP requests, execute conversions,
+                and manage data in multiple databases. Components are interlinked to ensure a smooth flow of data.
+            </p>
+
+            <h4>HTTP Server</h4>
+            <p>
+                The HTTP server acts as the central hub for handling and routing HTTP requests. It is implemented using
+                Python and the Flask framework, providing a robust foundation for web server functionalities.
+            </p>
+
+            <h4> Request Handlers</h4>
+
+            <ul>
+                <li>
+                    <h5>GET Handler</h5>
+                    <p>
+                        The GET handler is responsible for retrieving already executed conversions based on the provided
+                        "conversionID" parameter. It is in direct relation with the HTTP server, making HTTP requests to
+                        fetch the required data from Cache Storage - Database.
+                    </p>
+                </li>
+                <li>
+                    <h5>DELETE Handler</h5>
+                    <p>
+                        The DELETE handler facilitates the removal of previously executed conversions, using the
+                        "conversionID" parameter. Like the GET handler, it directly communicates with the HTTP server
+                        through HTTP requests and removes data from Cache Storage - Database.
+                    </p>
+                </li>
+                <li>
+                    <h5>POST Handler</h5>
+                    <p>
+                        The POST handler creates new conversions based on user input. It is connected to the
+                        Controlled Language Converter, Query Executor, and Query Result Adapter, forming a
+                        pipeline for conversion creation. After conversion is created, it saves data to Cache Storage - Database.
+                    </p>
+                </li>
+            </ul>
+            <h4> Conversion Processing </h4>
+            <ul>
+                <li>
+                    <h5> Controlled Language Converter</h5>
+                    <p>
+                        The Controlled Language Converter interprets user descriptions, expressed in a controlled
+                        language, and converts them into SPARQL queries. It collaborates with the POST handler to process user
+                        input effectively.
+                    </p>
+                </li>
+                <li>
+                    <h5>Query Executor</h5>
+                    <p>
+                        The Query Executor receives SPARQL queries generated by the Controlled Language Converter and
+                        executes them.
+                        It is directly linked to the second database (RDF Storage System Fuseki) to fetch data using
+                        pyfuseki library.
+                    </p>
+                </li>
+                <li>
+                    <h5>Query Result Adapter</h5>
+                    <p>
+                        The Query Result Adapter processes the results of SPARQL queries from the Query Executor,
+                        transforming them into user-friendly code. It works with the POST handler to present
+                        the converted data to users.
+                    </p>
+                </li>
+            </ul>
+
+        </section>
+        <section id="apiSpecification">
+            <!-- review? -->
+            <h4><span>3.3.2. </span>API Specification</h4>
+            <p>
+                This REST API specification provides a standardized and accessible interface for users to interact with
+                the UI Component Smart Generator. It outlines clear paths for listing, creating, retrieving, and deleting conversions
+                based on user-defined design descriptions.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode" role="doc-example" id="openApiSpecification">
+          <pre><code>
+          {
+              "openapi": "3.1.0",
+              "info": {
+                "title": "UI Component API",
+                "version": "1.0.0",
+                "description": "UI Component Smart Generator API"
+              },
+              "paths": {
+                "/conversion": {
+                  "get": {
+                    "summary": "List of all conversions",
+                    "responses": {
+                      "200": {
+                        "description": "Successful response",
+                        "content": {
+                          "application/json": {
+                            "example": {
+                              "Components": [
+                                {"id": "550e8400-e29b-41d4-a716-446655440000", "generatedCode": "&lt;div class=\"profile-container\"&gt;&lt;img class=\"profile-image\" src=\"profile-image.jpg\" alt=\"User Profile Image\"&gt;&lt;div class=\"profile-text\"&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ligula vel justo dapibus mattis.&lt;/p&gt;&lt;p&gt;Quisque euismod quam nec semper varius. Integer et leo id quam cursus feugiat sit amet a arcu.&lt;/p&gt;&lt;/div&gt;&lt;button class=\"edit-button\"&gt;Edit&lt;/button&gt;&lt;/div&gt;"},
+                                {"id": "550e8400-e29b-41d4-a716-446655440001", "generatedCode": "&lt;div class=\"profile-container\"&gt;&lt;img class=\"profile-image\" src=\"profile-image.jpg\" alt=\"User Profile Image\"&gt;&lt;div class=\"profile-text\"&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ligula vel justo dapibus mattis.&lt;/p&gt;&lt;p&gt;Quisque euismod quam nec semper varius. Integer et leo id quam cursus feugiat sit amet a arcu.&lt;/p&gt;&lt;/div&gt;&lt;button class=\"edit-button\"&gt;Edit&lt;/button&gt;&lt;/div&gt;"}
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "post": {
+                    "summary": "Add a new conversion",
+                    "requestBody": {
+                      "required": true,
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "description": "Build an aside|main section with 2 small photos 1 search input 2 nav links 1 download button"
+                          }
+                        }
+                      }
+                    },
+                    "responses": {
+                      "201": {
+                        "description": "Conversion created successfully",
+                        "content": {
+                          "application/json": {
+                            "example": {
+                              "id": "550e8400-e29b-41d4-a716-446655440002",
+                              "generatedCode": "&lt;aside&gt;&lt;img class=\"small-photo\" src=\"photo1.jpg\" alt=\"Small Photo 1\"&gt;&lt;img class=\"small-photo\" src=\"photo2.jpg\" alt=\"Small Photo 2\"&gt;&lt;/aside&gt;&lt;main&gt;&lt;input type=\"text\" class=\"search-input\" placeholder=\"Search...\"&gt;&lt;a href=\"#\" class=\"nav-link\"&gt;Nav Link 1&lt;/a&gt;&lt;a href=\"#\" class=\"nav-link\"&gt;Nav Link 2&lt;/a&gt;&lt;button class=\"download-button\"&gt;Download&lt;/button&gt;&lt;/main&gt;"
+                            }
+                          }
+                        }
+                      },
+                      "400": {
+                        "description": "Bad Request - Invalid input data"
+                      }
+                    }
+                  }
+                },
+                "/conversion/{conversionId}": {
+                  "get": {
+                    "summary": "Get a specific conversion",
+                    "parameters": [
+                      {
+                        "name": "conversionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                          "type": "string",
+                          "format": "uuid"
+                        }
+                      }
+                    ],
+                    "responses": {
+                      "200": {
+                        "description": "Successful response",
+                        "content": {
+                          "application/json": {
+                            "example": {
+                              "id": "550e8400-e29b-41d4-a716-446655440002",
+                              "generatedCode": "&lt;aside&gt;&lt;img class=\"small-photo\" src=\"photo1.jpg\" alt=\"Small Photo 1\"&gt;&lt;img class=\"small-photo\" src=\"photo2.jpg\" alt=\"Small Photo 2\"&gt;&lt;/aside&gt;&lt;main&gt;&lt;input type=\"text\" class=\"search-input\" placeholder=\"Search...\"&gt;&lt;a href=\"#\" class=\"nav-link\"&gt;Nav Link 1&lt;/a&gt;&lt;a href=\"#\" class=\"nav-link\"&gt;Nav Link 2&lt;/a&gt;&lt;button class=\"download-button\"&gt;Download&lt;/button&gt;&lt;/main&gt;"
+                            }
+                          }
+                        }
+                      },
+                      "404": {
+                        "description": "Conversion not found"
+                      }
+                    }
+                  },
+                  "delete": {
+                    "summary": "Delete a specific conversion",
+                    "parameters": [
+                      {
+                        "name": "conversionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                          "type": "string",
+                          "format": "uuid"
+                        }
+                      }
+                    ],
+                    "responses": {
+                      "204": {
+                        "description": "Conversion deleted successfully"
+                      },
+                      "404": {
+                        "description": "Conversion not found"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          </code></pre>
+                <figcaption>OpenAPI Specification - UI Component Smart Generator API</figcaption>
+            </figure>
+        </section>
+
+    </section>
+</section>
+<section id="userInteraction">
+    <!-- review? -->
+    <h2><span>4. </span>User Interaction</h2>
+
+    <figure typeof="schema:MediaObject:ImageObject:diagram" role="doc-example" id="userInteractionOverview">
+        <img src="images/user-app.png" alt="User - Application Interaction">
+        <figcaption>User - Application Interaction</figcaption>
+    </figure>
+
+    <p>
+        The User plays the main role in the system, initiating the interface design process by describing their vision
+        in a controlled language. This controlled language acts as a structured way for users to describe the
+        webpage layout. The User can access the Info Page from the Main Page to find out the structure
+        and keywords of the controlled language.
+    </p>
+    <p>
+        UICS acts as the intermediary that interprets and transforms the user's controlled language input into code,
+        specifically utilizing Ionic UI Components. After conversion, the code is returned to the User on an output area
+        from Main Page for display.
+    </p>
+</section>
+<section id="ontology"><h2><span>5. </span>Ontology</h2>
+    <p>
+        The OWL-based ontology developed for Ionic UI components serves as a foundational framework for expressing and
+        formalizing the semantics of key elements within the Ionic Framework. This section provides an overview of
+        the key components.
+    </p>
+
+    <p>
+        Within the ontology, each Ionic UI component is modeled as a class, forming a structured hierarchy that reflects
+        their organizational relationships. For instance, the class structure represents the parent-child relationship
+        between ion-card and ion-card-content. This hierarchical structure facilitates efficient navigation and retrieval of
+        information about the components and their interdependencies.
+    </p>
+    <h4>List of Ionic UI components used in UICS project</h4>
+    <ul>
+
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-input</a></h5>
+            <p>
+                The input component is a wrapper to the HTML input element with custom styling and additional
+                functionality.
+                It accepts most of the same properties as the HTML input, but works great on desktop devices and
+                integrates with the keyboard on mobile devices.
+            </p>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-content</a></h5>
+            <p>The content component provides an easy-to-use content area with some useful methods to control the
+                scrollable area.
+                There should only be one content in a single view.
+            </p>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-header</a></h5>
+            <p>Header is a root component of a page that aligns itself to the top of the page. It is recommended to be
+                used as a wrapper for one or more toolbars, but it can be used to wrap any element. When a toolbar is
+                used inside a header, the content will be adjusted so it is sized correctly, and the header will
+                account for any device safe areas.
+            </p>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-footer</a></h5>
+            <p> Footer is a root component of a page that aligns itself to the bottom of the page. It is recommended to
+                be used as a wrapper for one or more toolbars, but it can be used to wrap any element. When a toolbar is
+                used inside a footer, the content will be adjusted so it is sized correctly, and the footer will account
+                for any device safe areas.
+            </p>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-card</a></h5>
+            <p>
+                Cards are containers that display content such as text, images, buttons, and lists.
+                A card can be a single component, but is often made up of a header, title, subtitle, and content.
+                Contains:
+            </p>
+
+            <ul>
+                <li>
+                    <h5><a role="doc-biblioref" href="#ref-ionic">ion-card-content</a></h5>
+                    <p>
+                        Card content is a child component of card that adds padding around its contents. It is
+                        recommended that any text content for a card should be placed inside of card content.
+                    </p>
+                </li>
+                <li>
+                    <h5><a role="doc-biblioref" href="#ref-ionic">ion-card-header</a></h5>
+                    <p> Card header is a child component of card that should be placed before the card content. It can
+                        contain a card title and a card subtitle.
+                    </p>
+                </li>
+                <li>
+                    <h5><a role="doc-biblioref" href="#ref-ionic">ion-card-title</a></h5>
+                    <p> Card title is a child component of card that should be placed inside a card header.
+                    </p>
+                </li>
+
+                <li>
+                    <h5><a role="doc-biblioref" href="#ref-ionic">ion-card-subtitle</a></h5>
+                    <p> Card subtitle is a child component of card that should be placed inside a card header.
+                    </p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-grid</a></h5>
+            <p>
+                The grid is a powerful mobile-first flexbox system for building custom layouts. It is composed of three
+                units — a grid, row(s) and column(s). Columns will expand to fill the row, and will resize to fit
+                additional columns.
+                It is based on a 12 column layout with different breakpoints based on the screen size. The number of
+                columns can be customized using CSS.
+                Contains:
+            </p>
+            <ul>
+                <li>
+                    <h5><a role="doc-biblioref" href="#ref-ionic">ion-row</a></h5>
+                    <p>
+                        Rows are horizontal components of the grid system and contain varying numbers of columns. They
+                        ensure the columns are positioned properly.
+                        Contains:
+                    </p>
+                    <ul>
+                        <li>
+                            <h5><a role="doc-biblioref" href="#ref-ionic">ion-col</a></h5>
+                            <p>
+                                Columns are cellular components of the grid system and go inside a row.
+                                They will expand to fill the row. All content within a grid should go inside a
+                                column.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-list</a></h5>
+            <p>
+                Lists are made up of multiple rows of items which can contain text, buttons, toggles, icons, thumbnails,
+                and much more.
+                Lists generally contain items with similar data content, such as images and text.
+                Contains:
+            </p>
+            <ul>
+                <li>
+                    <h5><a role="doc-biblioref" href="#ref-ionic">ion-item</a></h5>
+                    <p>
+                        Items are elements that can contain text, icons, avatars, images, inputs, and any other native
+                        or custom elements.
+                        Items should only be used as rows in a List with other items. Items can be swiped, deleted,
+                        reordered, edited, and more.
+                    </p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+
+</section>
+<section id="biblio-references"><h2><span>6. </span>References</h2>
+    <dl>
+        <dt id="ref-ionic">Ionic UI Components</dt>
+        <dd property="schema:citation" typeof="schema:WebPage"
+            resource="https://ionicframework.com/docs/api">
+            <cite property="schema:name">
+                <a href="https://ionicframework.com/docs/api">Ionic UI Components API Documentation</a>
+            </cite>
+        </dd>
+        <dt id="ref-owl">OWL</dt>
+        <dd property="schema:citation" typeof="schema:WebPage"
+            resource="https://www.w3.org/OWL/">
+            <cite property="schema:name">
+                <a href="https://www.w3.org/OWL/">Web Ontology Language</a>
+            </cite>
+        </dd>
+        <dt id="ref-fuseki">Apache Jena Fuseki</dt>
+        <dd property="schema:citation" typeof="schema:WebPage"
+            resource="https://jena.apache.org/documentation/fuseki2/">
+            <cite property="schema:name">
+                <a href="https://jena.apache.org/documentation/fuseki2/">Apache Jena Fuseki Documentation</a>
+            </cite>
+        </dd>
+    </dl>
+</section>
+</body>
+</html>
