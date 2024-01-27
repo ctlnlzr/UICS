@@ -1,16 +1,20 @@
+from openai import OpenAI
+from resources.ontology import get_ontology, get_training_answer, get_training_question, get_question
+
+client = OpenAI()
+
+
 def convert_input(description):
-    return """
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        SELECT ?card ?cardHeader ?title ?subtitle ?grid ?row ?col WHERE {
-          ?card rdf:type ?Ion_Element.
-          ?card ?contains ?cardHeader.
-          ?cardHeader rdf:type ?Ion_Card_Header.
-          ?cardHeader ?contains ?title.
-          ?title rdf:type ?Ion_Card_Title.
-          ?cardHeader ?contains ?subtitle.
-          ?subtitle rdf:type ?Ion_Card_Subtitle.
-          ?card ?contains ?grid.
-          ?grid rdf:type ?Ion_Grid.
-        } LIMIT 1
-    """
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": get_ontology()},
+            {"role": "user", "content": get_training_question()},
+            {"role": "assistant", "content": get_training_answer()},
+            {"role": "user", "content": get_question(description)}
+        ]
+    )
+
+    print(completion.choices[0].message.content)
+
+    return completion.choices[0].message.content
