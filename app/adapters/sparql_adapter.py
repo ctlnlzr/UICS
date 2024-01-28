@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify
 import requests
 
 fuseki_endpoint = "http://localhost:3030/ds/query"
