@@ -1,5 +1,4 @@
 import sqlite3
-from sqlite3 import Error
 
 
 def execute_sql_file(file_path, conn):
