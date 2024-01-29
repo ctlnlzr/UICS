@@ -16,7 +16,7 @@ def query_sparql(query):
             result = response.json()
             return jsonify(result)
         else:
-            return jsonify({'error': 'SPARQL query failed'}), 500
+            return jsonify({'error': 'SPARQL query failed', "status_code": 500})
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e), "status_code": 500})
