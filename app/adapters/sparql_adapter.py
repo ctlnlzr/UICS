@@ -1,7 +1,7 @@
 from flask import jsonify
 import requests
 
-fuseki_endpoint = "http://localhost:3030/ds/query"
+fuseki_endpoint = "https://triplestore.onrender.com/ds/query"
 
 
 def query_sparql(query):
