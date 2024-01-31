@@ -1,0 +1,28 @@
+<body>
+    <div class='child1'>
+      <div class="request-box"> 
+        <h2>Enter your request</h2>
+        <form class="subscribe">
+          <input type="text" placeholder="">
+          <button class="submit_button" (click)="toggleDivVisibility()">Convert</button>
+        </form>
+      </div>
+    </div>
+    <div class='child2' [@fadeInOut] *ngIf="isDivVisible">
+      <div class="request-box"> 
+      <h2>Result</h2>
+        <div class="subscribe">
+          <div class="code-ide">
+            <button class="copy_button" (click)="copyToClipboard('Hello, Clipboard!')">Copy code</button>
+            <div class="code-editor">
+              <pre><code>
+{{code}}
+            </code></pre>
+            </div>
+          </div>        
+          <button class="submit_button">New</button>
+        </div>
+      </div>
+    </div>
+</body>
+
