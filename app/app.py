@@ -3,9 +3,10 @@ from handlers.delete_handler import remove_handle
 from handlers.get_handler import list_handle, retrieve_handle
 from handlers.post_handler import create_handle
 from flask import Flask, request
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/conversions/<element_id>', methods=['DELETE'])

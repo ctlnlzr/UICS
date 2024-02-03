@@ -14,7 +14,7 @@ def create_handle(request):
 def persist_answer(query_result):
     conversion_id = str(uuid.uuid4())
     if insert_conversion(conversion_id, query_result) is None:
-        return {'id': conversion_id, 'conversion': query_result}, 201
+        return {'id': conversion_id, 'message': query_result}, 201
     else:
         return {'message': "Database insertion failed"}, 500
 
