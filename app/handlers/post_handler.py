@@ -5,7 +5,6 @@ from database.access import insert_conversion
 import uuid
 
 
-
 def create_handle(request):
     description = request.get_json().get('description', '')
     return get_output(query_sparql(convert_input(description)))
