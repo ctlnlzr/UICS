@@ -396,6 +396,14 @@
                 <figcaption>OpenAPI Specification - UI Component Smart Generator API</figcaption>
             </figure>
         </section>
+        <section id="apiSpecification">
+            <h4><span>3.3.3. </span>Tehnical Details</h4>
+            <h5>Chat GPT Integration</h5>
+            <p>
+                The integration of ChatGPT into the project aims to transform natural language input for 
+                generating SPARQL queries based on our ontology.
+            </p>
+        </section>
 
     </section>
 </section>
@@ -554,7 +562,357 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-img</a></h5>
+            <p>
+                Img is a tag that will lazily load an image whenever the tag is 
+                in the viewport. This is extremely useful when generating a large 
+                list as images are only loaded when they're visible.
+            </p>
+        </li>
+        <li>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-title</a></h5>
+            <p>
+                Title is a text component that sets the title for a toolbar. It can be 
+                used to describe the screen or section a user is currently on or the app being used.
+            </p>
+        </li>
     </ul>
+
+    <p>
+        This ontology represents a set of components and their hierarchies within the Ionic framework, organized 
+        into cards, content, headers, grids, lists, and other UI elements.
+        Each component has specific assertions about its composition and structure. 
+    </p>
+
+    <h4>List of Ionic framework components and their relationships</h4>
+    <ul>
+        <li>
+            <h5>Card_1</h5> 
+            <p> 
+                Object property assertions: contains CardContent_1 and CardHeader_1
+            <pre>
+    &lt;ion-card&gt;
+        &lt;ion-card-header&gt;
+            &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
+            &lt;ion-card-subtitle&gt;&lt;/ion-card-subtitle&gt;
+        &lt;/ion-card-header&gt;
+                           
+        &lt;ion-card-content&gt;
+            &lt;p&gt;&lt;/p&gt;
+        &lt;/ion-card-content&gt;
+    &lt;/ion-card&gt;	
+            </pre>
+            </p>
+        </li>
+        <li>
+            <h5>Card_2</h5>
+            <p>
+                Object property assertions: contains CardContent_2 and CardHeader_2
+            <pre>
+    &lt;ion-card&gt;
+        &lt;ion-card-header&gt;
+            &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
+        &lt;/ion-card-header&gt;
+                
+        &lt;ion-card-content&gt;
+            &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
+            &lt;ion-input&gt;&lt;/ion-input&gt;   
+        &lt;/ion-card-content&gt;
+    &lt;/ion-card&gt;
+            </pre>
+            </p>
+        </li>
+        <li>
+            <h5>CardContent_1</h5>  
+            <p>
+                Object property assertions: contains Paragraph
+            <pre>
+    &lt;ion-card-content&gt;
+        &lt;p&gt;&lt;/p&gt;
+    &lt;/ion-card-content&gt;
+            </pre>
+        </p>
+        </li>
+        <li>
+            <h5>CardContent_2</h5>  
+            <p>
+                Object property assertions: contains Input and Image
+            <pre>
+    &lt;ion-card-content&gt;
+        &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
+        &lt;ion-input&gt;&lt;/ion-input&gt;   
+    &lt;/ion-card-content&gt;
+            </pre>
+            </p>
+        </li>
+        <li>
+            <h5>CardHeader_1</h5>  
+            <p>
+                Object property assertions: contains CardSubtitle and CardTitle
+            <pre>
+    &lt;ion-card-header&gt;
+        &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
+        &lt;ion-card-subtitle&gt;&lt;/ion-card-subtitle&gt;
+    &lt;/ion-card-header&gt;
+            </pre>
+            </p>
+        </li>  
+        <li>
+            <h5>CardHeader_2</h5>  
+            <p>
+                Object property assertions: contains CardTitle
+            <pre>
+    &lt;ion-card-header&gt;
+        &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
+    &lt;/ion-card-header&gt;
+            </pre>
+            </p>
+        </li>
+        <li>
+            <h5>CardSubtitle</h5>
+            <p>
+                <pre>
+    &lt;ion-card-subtitle&gt;&lt;/ion-card-subtitle&gt;
+                </pre>
+            </p>
+        </li>
+        <li>
+            <h5>CardTitle</h5>
+            <p>
+                <pre>
+    &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
+                </pre>
+            </p>
+            
+        </li>
+        <li>
+            <h5>Column_1, Column_2, Column_3, Column_4</h5>
+            <p>
+                <pre>
+    &lt;ion-col&gt;&lt;/ion-col&gt;
+                </pre>
+            </p>
+            
+        </li>
+        <li>
+            <h5>Footer</h5>  
+            <p>
+                Object property assertions: contains Title_1
+            <pre>
+    &lt;ion-footer&gt;
+        &lt;ion-title&gt;&lt;/ion-title&gt;
+    &lt;/ion-footer&gt;
+            </pre>
+            </p>
+        </li>
+        <li>
+            <h5>Grid</h5>  
+            <p>
+                Object property assertions: contains Row_2, Row_1, Row_3
+                <pre>
+    &lt;ion-grid&gt;
+        &lt;ion-row&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+                    
+        &lt;ion-row&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+                    
+        &lt;ion-row&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;&lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+    &lt;/ion-grid&gt;
+                </pre>
+            </p>
+        </li>
+        <li>
+            <h5>Image</h5>
+            <p>
+                <pre>
+    &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
+                </pre>
+            </p>
+            
+        </li>
+        <li>
+            <h5>Input</h5>
+            <p>
+                <pre>
+    &lt;ion-input&gt;&lt;/ion-input&gt;
+                </pre>
+            </p>
+        </li>
+        <li>
+            <h5>List_1</h5>  
+            <p>
+                Object property assertions: contains ListItem_1, ListItem_2, ListItem_3
+            <pre>
+    &lt;ion-list&gt;
+        &lt;ion-item&gt;
+            &lt;p&gt;&lt;/p&gt;  
+        &lt;/ion-item&gt;
+            
+        &lt;ion-item&gt;
+            &lt;p&gt;&lt;/p&gt;  
+        &lt;/ion-item&gt;
+            
+        &lt;ion-item&gt;
+            &lt;p&gt;&lt;/p&gt;  
+        &lt;/ion-item&gt;
+    &lt;/ion-list&gt;
+            </pre>
+            </p>
+        </li>
+        <li>
+            <h5>ListItem_1</h5> 
+            <p>
+                Object property assertions: contains Paragraph
+            <pre>
+    &lt;ion-item&gt;
+        &lt;p&gt;&lt;/p&gt;  
+    &lt;/ion-item&gt;
+            </pre>
+        </p>
+        </li>
+        <li>
+            <h5>ListItem_2</h5>  
+            <p>
+                Object property assertions: contains Paragraph
+            <pre>
+    &lt;ion-item&gt;
+        &lt;p&gt;&lt;/p&gt;  
+    &lt;/ion-item&gt;
+            </pre>
+        </p>
+        </li>
+        <li>
+            <h5>ListItem_3</h5>  
+            <p>
+                Object property assertions: contains Paragraph
+                <pre>
+    &lt;ion-item&gt;
+        &lt;p&gt;&lt;/p&gt;  
+    &lt;/ion-item&gt;
+                </pre>
+            </p>
+            
+        </li>
+        <li>
+            <h5>PageContent_1</h5>  
+            <p>
+                Object property assertions: contains Grid_1 and Paragraph
+            <pre>
+    &lt;ion-content&gt;
+            
+        &lt;p&gt;&lt;/p&gt;
+            
+        &lt;ion-grid&gt;
+            &lt;ion-row&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;/ion-row&gt;
+            
+            &lt;ion-row&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;/ion-row&gt;
+            
+            &lt;ion-row&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+                &lt;ion-col&gt;&lt;/ion-col&gt;
+            &lt;/ion-row&gt;
+        &lt;/ion-grid&gt;
+            
+    &lt;/ion-content&gt;
+            </pre>
+        </p>
+        </li>
+        <li>
+            <h5>PageContent_2</h5>  
+            <p>
+                Object property assertions: contains Image and List_1
+                <pre>
+    &lt;ion-content&gt;        
+    &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
+                    
+    &lt;ion-list&gt;
+        &lt;ion-item&gt;
+        &lt;p&gt;&lt;/p&gt;  
+        &lt;/ion-item&gt;
+                    
+        &lt;ion-item&gt;
+        &lt;p&gt;&lt;/p&gt;  
+        &lt;/ion-item&gt;
+                    
+        &lt;ion-item&gt;
+        &lt;p&gt;&lt;/p&gt;  
+        &lt;/ion-item&gt;
+    &lt;/ion-list&gt;
+                    
+    &lt;/ion-content&gt;
+                </pre>
+        </p>
+        </li>
+        <li>
+            <h5>PageHeader_1</h5>  
+            <p>
+                Object property assertions: contains Title_1
+            <pre>
+    &lt;ion-header&gt;
+        &lt;ion-title&gt;&lt;/ion-title&gt;
+    &lt;/ion-header&gt;
+            </pre>
+        </p>
+        </li>
+        <li>
+            <h5>Paragraph</h5>
+            <p>
+                <pre>
+    &lt;p&gt;&lt;/p&gt;
+                </pre>
+            </p>
+        </li>
+        <li>
+            <h5>Row_1, Row_2, Row_3</h5>  
+            <p>
+                Object property assertions: contains Column_1, Column_2, Column_3, Column_4
+            <pre>
+    &lt;ion-row&gt;
+        &lt;ion-col&gt;&lt;/ion-col&gt;
+        &lt;ion-col&gt;&lt;/ion-col&gt;
+        &lt;ion-col&gt;&lt;/ion-col&gt;
+        &lt;ion-col&gt;&lt;/ion-col&gt;
+    &lt;/ion-row&gt;
+            </pre>
+        </p>
+        </li>
+        <li>
+            <h5>Title_1</h5>
+            <p>
+                <pre>
+    &lt;ion-title&gt;&lt;/ion-title&gt;
+                </pre>
+            </p>
+        </li>
+    </ul>
+
 
 
 </section>

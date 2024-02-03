@@ -1,0 +1,17 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.header {
+    margin: 0;
+}
+
+.text {
+    color: azure;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.no-link {
+    text-decoration: none; 
+}

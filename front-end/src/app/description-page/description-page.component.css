@@ -1,0 +1,31 @@
+.page-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgba(250, 228, 253, 0.653);
+    height: 91%;
+    margin-top: 0;
+}
+
+.language-box {
+    flex-grow: 1;
+    background-color: rgb(19, 77, 19);
+    margin: 2em;
+    width: 30%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: azure;
+}
+
+.text-title {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+
+.text {
+    font-size: large;
+}

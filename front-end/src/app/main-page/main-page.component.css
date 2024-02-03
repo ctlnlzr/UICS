@@ -1,0 +1,88 @@
+.page-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgba(250, 228, 253, 0.653);
+    height: 91%;
+    margin-top: 0;
+}
+
+.request-box {
+    flex-grow: 1;
+    background-color: rgb(19, 77, 19);
+    margin: 2em;
+    width: 20%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: azure;
+}
+
+.result-box {
+    flex-grow: 1;
+    background-color: rgb(0, 0, 0);
+    margin: 2em;
+    margin-left: 0;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: azure;
+}
+   
+.code-ide {
+    background-color: rgba(234, 219, 199, 0.329);
+    border-width: thin;
+    border-style: solid;
+    border-color: rgba(240, 248, 255, 0.719);
+    border-radius: 3%;
+    width:23em; 
+    max-width: 23em;
+    height:20em; 
+    max-height: 22em;
+    display: inline-block;
+    overflow: auto;
+}
+
+
+.code-editor {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+}
+
+
+.code-description {
+   width: 100%;
+}
+
+.description-form {
+    width: 100%;
+}
+
+.description-content {
+    width: 70%;
+}
+
+.text {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }

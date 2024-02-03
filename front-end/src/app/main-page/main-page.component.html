@@ -1,0 +1,45 @@
+<div class="page-content">
+<mat-card class="request-box"> 
+    <mat-card-header>
+        <mat-card-title class="text">
+            Enter your request
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="description-content">
+        <form class="description-form">
+            <mat-form-field class="code-description">
+                <mat-label>Insert description</mat-label>
+                <textarea 
+                cdkTextareaAutosize 
+                cdkAutosizeMinRows="5"
+                matInput placeholder="Ex. Create me a card which contains..."
+                [(ngModel)]="description"
+                [ngModelOptions]="{standalone: true}"></textarea> 
+            </mat-form-field> 
+      </form>
+    </mat-card-content>
+    <mat-card-actions> 
+        <button mat-raised-button color="primary" (click)="getResult()">Convert</button>
+    </mat-card-actions>
+</mat-card>
+<mat-card class='result-box'>
+    <mat-card-header>
+        <mat-card-title class="text">
+            Result
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="code-ide">
+            <button mat-icon-button (click)="copyToClipboard(result)">
+                <mat-icon>file_copy</mat-icon>
+            </button>
+            <div class="code-editor">
+                <pre><code class="code">{{result}}</code></pre>
+            </div>
+          </div>        
+    </mat-card-content>
+    <mat-card-actions> 
+         <button mat-raised-button color="accent" (click)="reset()">New</button>
+    </mat-card-actions> 
+</mat-card>
+</div>
