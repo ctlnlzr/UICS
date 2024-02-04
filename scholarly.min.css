@@ -93,6 +93,11 @@ sub {
      margin-left: -7em;
 }
 
+.mainPage{
+    display: block;
+    margin-left: -14em;
+    width: 80em;
+}
 svg:not(:root) {
     overflow: hidden
 }
