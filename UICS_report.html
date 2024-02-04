@@ -121,16 +121,65 @@
             UICS leverages two distinct storage systems to manage its data effectively.
         </p>
         <p>
-            RDF Storage System (<a role="doc-biblioref" href="#ref-fuseki">Apache Jena Fuseki</a>):
+            <h3>RDF Storage System (<a role="doc-biblioref" href="#ref-fuseki">Apache Jena Fuseki</a>)</h3>
             The RDF storage system is used for persistently storing and managing Resource Description Framework
             (RDF) data, namely the ontology we create to express the relations between Ionic UI components.
             Apache Jena Fuseki serves as the database engine.
-        </p>
+
         <p>
-            Cache Storage (MySQL):
+        <p>    
+        Fuseki operates as a dedicated SPARQL server, serving as the backend component for processing SPARQL queries received at its endpoint via a POST request and delivering the corresponding query results.
+        </p>
+        </p>
+        Fuseki is linked to our ontology and when a user formulates a request grounded in our ontology, Fuseki executes the corresponding SPARQL query onto our ontology. Upon successful execution, Fuseki returns the results in JSON format, encapsulating the queried data as code snippets relevant to the user's request.
+
+        </p>
+            <h3>Cache Storage (MySQL)</h3>
             In addition to the RDF storage, UICS utilizes a MySQL-based Cache Storage system. This system provides a
             quick and efficient means of storing and retrieving frequently accessed data, optimizing the performance of
             the backend processes.
+            The database "conversions" contains a table "elements" and has two columns:
+                <ul>
+                    <li>
+                        <h5>id (TEXT)</h5>
+                        <p>Unique identifier for each conversion.</p> 
+                    </li>
+                    <li>
+                        <h5>generatedCode (TEXT)</h5>
+                        <p>Unique identifier for each conversion.</p>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                Operations supported:
+                <ul>
+                    <li>
+                        <h5>Store Conversions</h5>
+                        <p>
+                            Conversions, which are SPARQL queries, are stored in the database. Each conversion is associated with a unique identifier.
+                        </p>
+                    </li>
+                    <li> 
+                        <h5>Retrieve Conversions</h5>
+                        <p>
+                            Specific conversions can be retrieved from the database based on their unique identifiers.
+                        </p>
+                    </li>
+                    <li>
+                        <h5>Remove Conversions</h5>
+                        <p>
+                            Unwanted or outdated conversions can be removed from the database using their unique identifiers.
+                        </p>
+                    </li>
+                    <li>
+                        <h5>List Conversions</h5>
+                        <p>
+                            list of all stored conversions can be obtained, providing an overview of the available data.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </p>
         </p>
     </section>
     <section id="frontend">
@@ -398,12 +447,100 @@
         </section>
         <section id="apiSpecification">
             <h4><span>3.3.3. </span>Tehnical Details</h4>
-            <h5>Chat GPT Integration</h5>
+            <h3>Chat GPT Integration</h3>
             <p>
                 The integration of ChatGPT into the project aims to transform natural language input for 
                 generating SPARQL queries based on our ontology.
             </p>
+            <ul>
+                <li>
+                    <h5>Creating Ontology Awareness and Training the AI</h5>
+                    <p>
+                        The initial step involves sending of a system message sent to ChatGPT to inform it about the ontology used in the project and the structure and relationships within the knowledge base.
+                        This ensures that ChatGPT is aware of the specific data structure and relationships defined in the ontology.
+                    </p>
+                    <p>
+                        Following this, we initiate the training process. Training questions, specifically designed to cover aspects of SPARQL query generation, 
+                        are presented to ChatGPT along with their corresponding answers. 
+                    </p>
+                </li>
+                <li>
+                    <h5>User Input Processing</h5>
+                    <p>
+                        When a user provides input in the form of natural language descriptions, it is passed to ChatGPT along with the ontology information and is
+                        processed using the knowledge from the ontology and the learned patterns from the training questions.
+                    </p>
+                    <p>
+                            As the user interacts with the system, their natural language 
+                            input is processed through ChatGPT, utilizing a chat-based completion approach.
+
+                        With this approach, we are instructing the model by including system, user, and assistant messages in a back-and-forth conversation. 
+                        The model then generates responses based on the entire context of the conversation, making it suitable for our application.
+                    </p>
+                </li>
+                <li>
+                    <h5> Query Generation</h5>
+                    <p>
+                        ChatGPT processes the input using its trained model and generates SPARQL queries based on the ontology and the learned patterns from the training data.
+                    </p>
+                </li>
+            </ul>
+            <br>
+            <p>
+                On the other hand, there is a list of rules that need to be taken into consideration when the user is writing the request:
+                <ul>
+                    <li>
+                        <h5>The user must use clear and specific terms when referring to ontology entities. For instance, when mentioning a card in the ontology, use phrases like "card" or "title"</h5>
+                    </li>
+                    <li>
+                        <h5>
+                            If involving multiple entities, the user must describe their relationships explicitly: "Create a template for an card with an image and an input contained in an card content."
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>The user must use the ontology's hierarchical structure in descriptions to  minimize ambiguity:
+                            "Create the code for a card which contains a header with a title and a subtitle and also a card content with a paragraph."</h5>
+                    </li>
+                    <li>
+                        <h5>The user must use verbs like "create", "contains", "include" or other synonyms when expressing relationships or containment. Example: "Create a template for an card containing an image and an input."</h5>
+                    </li>
+                </ul>
+            </p>
+
         </section>
+    <section id="apiSpecification">
+        <h4><span>3.3.4. </span>Deployment</h4>
+        <p>    
+            For deploying our project, we employed two distinct platforms: GitHub Pages for hosting the frontend and Render for deploying the Fuseki server.
+        </p>
+            <h5>Deploying the Fuseki Server on Render</h5>
+            <ul>
+                <li>
+                    <h5>Docker Image Creation</h5>
+                    <p>
+                        We utilized Docker to create a containerized image of the Fuseki server, ensuring consistent deployment across different environments. 
+                        The Docker image encapsulates the necessary configurations and dependencies for running the Fuseki server
+                    </p>
+                </li>
+                <li>
+                    <h5>Render Configuration and Environment Variables</h5>
+                    <p>
+                        During the configuration process, we specified the Docker image as the build source,and we also
+                        configured environment variables on Render to provide necessary configurations for the Fuseki server, such as endpoint details.
+                    </p>
+                </li>
+            </ul>
+            <h5>Deploying Frontend on GitHub Pages</h5>
+            <ul>
+                <li>
+                    <h5>GitHub Pages Setup and Branch Configuration</h5>
+                    <p>
+                        The frontend code is hosted directly from the GitHub repository, simplifying the deployment process, and by specifying the main branch or any other target branch, GitHub Pages automatically deploys the latest version of the frontend whenever changes are pushed.
+                    </p>
+                </li>
+            </ul>
+        
+    </section>
 
     </section>
 </section>
@@ -585,7 +722,122 @@
         Each component has specific assertions about its composition and structure. 
     </p>
 
-    <h4>List of Ionic framework components and their relationships</h4>
+    <p>
+        <h3>Hierarchical structure of the onotology</h3>
+    <ul>
+        <li>
+            <h5>Header</h5>
+            <ul>
+                <li>
+                    <h5>Title</h5>
+                </li>
+                <li>
+                    Paragraph
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h5>Content-Card</h5>
+            <ul>
+                <li>
+                    <h5>Card Header</h5>
+                    <ul>
+                        <li>
+                            <h5>Card Title</h5>
+                            <ul>
+                                <li>
+                                    <h5>Card Subtitle</h5>
+                                </li>
+                                <li>
+                                    <h5>Card Content</h5>
+                                    <ul>
+                                        <li>
+                                            <h5>Grid</h5>
+                                            <ul>
+                                                <li>
+                                                    <h5>Row</h5>
+                                                    <ul>
+                                                        <li>
+                                                            <h5>Column</h5>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <li>
+                                                <h5>List</h5>
+                                                <ul>
+                                                    <li>
+                                                        <h5>Item</h5>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h5>Image</h5>
+                                            </li>
+                                            <li>
+                                                <h5>Input</h5>
+                                            </li>
+                                            <li>
+                                                <h5>Button</h5>
+                                            </li>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h5>Card Footer</h5>
+                                </li>
+                            </ul>
+                            
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Grid</h5>
+                    <ul>
+                        <li>
+                            <h5>Row</h5>
+                            <ul>
+                                <li>
+                                    <h5>Column</h5>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>List</h5>
+                    <ul>
+                        <li>
+                            <h5>Item</h5>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Image</h5>
+                </li>
+                <li>
+                    <h5>Input</h5>
+                </li>
+                <li>
+                    <h5>Button</h5>
+                </li>
+                <li>
+                    <h5>Paragraph</h5>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h5>Footer</h5>
+            <ul>
+                <li>
+                    <h5>Paragraph</h5>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    </p>
+
+    <h4>Examples of Ionic framework components and their relationships within the project</h4>
     <ul>
         <li>
             <h5>Card_1</h5> 
@@ -623,78 +875,7 @@
             </pre>
             </p>
         </li>
-        <li>
-            <h5>CardContent_1</h5>  
-            <p>
-                Object property assertions: contains Paragraph
-            <pre>
-    &lt;ion-card-content&gt;
-        &lt;p&gt;&lt;/p&gt;
-    &lt;/ion-card-content&gt;
-            </pre>
-        </p>
-        </li>
-        <li>
-            <h5>CardContent_2</h5>  
-            <p>
-                Object property assertions: contains Input and Image
-            <pre>
-    &lt;ion-card-content&gt;
-        &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
-        &lt;ion-input&gt;&lt;/ion-input&gt;   
-    &lt;/ion-card-content&gt;
-            </pre>
-            </p>
-        </li>
-        <li>
-            <h5>CardHeader_1</h5>  
-            <p>
-                Object property assertions: contains CardSubtitle and CardTitle
-            <pre>
-    &lt;ion-card-header&gt;
-        &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
-        &lt;ion-card-subtitle&gt;&lt;/ion-card-subtitle&gt;
-    &lt;/ion-card-header&gt;
-            </pre>
-            </p>
-        </li>  
-        <li>
-            <h5>CardHeader_2</h5>  
-            <p>
-                Object property assertions: contains CardTitle
-            <pre>
-    &lt;ion-card-header&gt;
-        &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
-    &lt;/ion-card-header&gt;
-            </pre>
-            </p>
-        </li>
-        <li>
-            <h5>CardSubtitle</h5>
-            <p>
-                <pre>
-    &lt;ion-card-subtitle&gt;&lt;/ion-card-subtitle&gt;
-                </pre>
-            </p>
-        </li>
-        <li>
-            <h5>CardTitle</h5>
-            <p>
-                <pre>
-    &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
-                </pre>
-            </p>
-            
-        </li>
-        <li>
-            <h5>Column_1, Column_2, Column_3, Column_4</h5>
-            <p>
-                <pre>
-    &lt;ion-col&gt;&lt;/ion-col&gt;
-                </pre>
-            </p>
-            
-        </li>
+    
         <li>
             <h5>Footer</h5>  
             <p>
@@ -736,23 +917,7 @@
                 </pre>
             </p>
         </li>
-        <li>
-            <h5>Image</h5>
-            <p>
-                <pre>
-    &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
-                </pre>
-            </p>
-            
-        </li>
-        <li>
-            <h5>Input</h5>
-            <p>
-                <pre>
-    &lt;ion-input&gt;&lt;/ion-input&gt;
-                </pre>
-            </p>
-        </li>
+       
         <li>
             <h5>List_1</h5>  
             <p>
@@ -773,40 +938,6 @@
     &lt;/ion-list&gt;
             </pre>
             </p>
-        </li>
-        <li>
-            <h5>ListItem_1</h5> 
-            <p>
-                Object property assertions: contains Paragraph
-            <pre>
-    &lt;ion-item&gt;
-        &lt;p&gt;&lt;/p&gt;  
-    &lt;/ion-item&gt;
-            </pre>
-        </p>
-        </li>
-        <li>
-            <h5>ListItem_2</h5>  
-            <p>
-                Object property assertions: contains Paragraph
-            <pre>
-    &lt;ion-item&gt;
-        &lt;p&gt;&lt;/p&gt;  
-    &lt;/ion-item&gt;
-            </pre>
-        </p>
-        </li>
-        <li>
-            <h5>ListItem_3</h5>  
-            <p>
-                Object property assertions: contains Paragraph
-                <pre>
-    &lt;ion-item&gt;
-        &lt;p&gt;&lt;/p&gt;  
-    &lt;/ion-item&gt;
-                </pre>
-            </p>
-            
         </li>
         <li>
             <h5>PageContent_1</h5>  
@@ -880,39 +1011,9 @@
     &lt;/ion-header&gt;
             </pre>
         </p>
-        </li>
-        <li>
-            <h5>Paragraph</h5>
-            <p>
-                <pre>
-    &lt;p&gt;&lt;/p&gt;
-                </pre>
-            </p>
-        </li>
-        <li>
-            <h5>Row_1, Row_2, Row_3</h5>  
-            <p>
-                Object property assertions: contains Column_1, Column_2, Column_3, Column_4
-            <pre>
-    &lt;ion-row&gt;
-        &lt;ion-col&gt;&lt;/ion-col&gt;
-        &lt;ion-col&gt;&lt;/ion-col&gt;
-        &lt;ion-col&gt;&lt;/ion-col&gt;
-        &lt;ion-col&gt;&lt;/ion-col&gt;
-    &lt;/ion-row&gt;
-            </pre>
-        </p>
-        </li>
-        <li>
-            <h5>Title_1</h5>
-            <p>
-                <pre>
-    &lt;ion-title&gt;&lt;/ion-title&gt;
-                </pre>
-            </p>
-        </li>
     </ul>
 
+    
 
 
 </section>
