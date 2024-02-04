@@ -19,12 +19,20 @@ def persist_answer(query_result):
 
 
 def extract_code(query_result):
-    return query_result.json['results']['bindings'][0]['code']['value'].replace("\n", "")
+    if len(query_result.json['results']['bindings']) > 0:
+        return query_result.json['results']['bindings'][0]['code']['value'].replace("\n", "")
+    return None
 
 
 def get_output(query_result):
     if query_result.status_code == 200:
-        answer = persist_answer(extract_code(query_result))
-        return create_response(answer[0], answer[1])
+        answer = extract_code(query_result)
+        if answer is not None:
+            answer = persist_answer(answer)
+            return create_response(answer[0], answer[1])
+        else:
+            return create_response({"message": "No results"}, 200)
     else:
         return create_response({"message": "Failed SPARQL request"}, 500)
+
+

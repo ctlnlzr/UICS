@@ -14,14 +14,16 @@ def get_ontology():
                                            rdfs:range untitled-ontology-2:Tags .
               owl:topObjectProperty rdfs:subPropertyOf untitled-ontology-2:contains .
               untitled-ontology-2:code rdf:type owl:DatatypeProperty .
+              untitled-ontology-2:Ion_Button rdf:type owl:Class ;
+                                             rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Card rdf:type owl:Class ;
                                            rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Card_Content rdf:type owl:Class ;
-                                                   rdfs:subClassOf untitled-ontology-2:Ion_Element .
+                                                 rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Card_Header rdf:type owl:Class ;
                                                   rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Card_Subtitle rdf:type owl:Class ;
-                                                    rdfs:subClassOf untitled-ontology-2:Ion_Element .
+                                                  rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Card_Title rdf:type owl:Class ;
                                                  rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Col rdf:type owl:Class ;
@@ -48,6 +50,8 @@ def get_ontology():
                                           rdfs:subClassOf untitled-ontology-2:Ion_Element .
               untitled-ontology-2:Ion_Title rdf:type owl:Class ;
                                             rdfs:subClassOf untitled-ontology-2:Ion_Element .
+              untitled-ontology-2:Page rdf:type owl:Class ;
+                                       rdfs:subClassOf untitled-ontology-2:Tags .
               untitled-ontology-2:Paragraph rdf:type owl:Class ;
                                             rdfs:subClassOf untitled-ontology-2:Regular_Elements .
               untitled-ontology-2:Regular_Elements rdf:type owl:Class ;
@@ -55,7 +59,7 @@ def get_ontology():
               untitled-ontology-2:Tags rdf:type owl:Class ."""
 
 
-def get_training_answer():
+def get_training_answer_1():
     return """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
               PREFIX untitled-ontology-2: <http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#>
               SELECT ?code
@@ -68,11 +72,34 @@ def get_training_answer():
               }"""
 
 
-def get_training_question():
+def get_training_question_1():
     return "Convert the following description in a SPARQL query: Create a template for the card content including an" \
            " image and an ion-input. Please return only the code data property"
 
 
+def get_training_answer_2():
+    return """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+              PREFIX untitled-ontology-2: <http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#>
+              SELECT ?code
+              WHERE {
+                ?ionContent rdf:type untitled-ontology-2:Ion_Content.
+                ?ionContent untitled-ontology-2:contains ?card.
+                ?card rdf:type untitled-ontology-2:Ion_Card.
+                ?card untitled-ontology-2:contains ?cardContent.
+                ?cardContent rdf:type untitled-ontology-2:Ion_Card_Content.
+                ?cardContent untitled-ontology-2:contains ?img, ?button.
+                ?img rdf:type untitled-ontology-2:Ion_Img.
+                ?button rdf:type untitled-ontology-2:Ion_Button.
+                ?ionContent untitled-ontology-2:code ?code.
+              }
+              LIMIT 1"""
+
+
+def get_training_question_2():
+    return "Convert the following description in a SPARQL query: Return the code a content which includes a card with" \
+           " a card content inside of which is an image and a button Please return only the code data property"
+
+
 def get_question(description):
-    return "Convert the following description in a SPARQL query: {}. Please return only the code data property"\
+    return "Convert the following description in a SPARQL query: {}. Please return only the code data property for the first element."\
         .format(description)
