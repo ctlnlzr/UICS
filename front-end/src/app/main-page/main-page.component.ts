@@ -42,10 +42,24 @@ export class MainPageComponent {
   }
 
   getResult() {
+    var message = "";
+    var re = " ";
+    var i = 0;
     this.http.post<any>('https://uics-1-3.onrender.com/conversions', {description: this.description})
      .subscribe(data => {
       console.log(data);
-      this.result = data.message.replaceAll(" ", "\n").replaceAll('\n\n', '\n');});
+      message = data.message.replaceAll(re,"");
+      while( i < message.length)
+      {
+        if(message[i] == '>')
+        {
+          message = message.slice(0, i + 1)+'\n'+ message.slice(i + 1, message.length);
+        }
+        i = i + 1;
+      }
+      this.result = message;
+      console.log(this.result);
+    });
   }
 
 
