@@ -625,7 +625,6 @@ LIMIT 1</code></pre>
     </section>
 </section>
 <section id="userInteraction">
-    <!-- review? -->
     <h2><span>4. </span>User Interaction</h2>
 
     <figure typeof="schema:MediaObject:ImageObject:diagram" role="doc-example" id="userInteractionOverview">
@@ -681,7 +680,7 @@ LIMIT 1</code></pre>
         formalizing the semantics of key elements within the Ionic Framework. This section provides an overview of
         the key components.
     </p>
-    
+
     <p>
         The ontology was design with Protégé editor. Our class hierarchy derives from the main class (<i>owl:Thing</i>)
         with <b>Tags</b> class which becomes the root of our ontology. From Tags derives <b>Page</b>, <b>Ion_Element</b>
@@ -839,10 +838,34 @@ LIMIT 1</code></pre>
         </li>
     </ul>
 </section>
-<section id="projectProgress"><h2><span>7. </span> Project Progress</h2>
+<section id="projectProgress"><h2><span>6. </span> Project Progress</h2>
+    <h4>Project Objectives</h4>
+    <ul>
+        <li><p>Define ontology</p></li>
+        <li><p>Implement basic API routes in Backend server</p></li>
+        <li><p>Implement caching system with MySQL database</p></li>
+        <li><p>Extend Post route with natural language conversion to SPARQL</p></li>
+        <li><p>Extend Post route with SPARQL query execution</p></li>
+        <li><p>Configure Apache Jena Fuseki</p></li>
+        <li><p>Implement Frontend server</p></li>
+        <li><p>Backend deployment</p></li>
+        <li><p>Apache Jena Fuseki deployment</p></li>
+        <li><p>Frontend deployment</p></li>
+    </ul>
 
+    <h4>Project Progress</h4>
+    <figure typeof="schema:MediaObject:ImageObject:diagram" role="doc-example" id="progress">
+                    <img src="images/projectProgress.png" alt="Project Progress"  class="mainPage">
+                    <figcaption>Project Progress</figcaption>
+    </figure>
+
+    <h4>Additions</h4>
+    <p> Starting from our initial objectives, we added after the midterm evaluation of the project the ChatGPT integration. Initially,
+    our approach would imply an in-house solution for controlled language descriptions conversion to SPARQL queries. After the evaluation and
+    feedback we used for conversion ChatGPT from OpenAi.
+    </p>
 </section>
-<section id="biblio-references"><h2><span>6. </span>References</h2>
+<section id="biblio-references"><h2><span>7. </span>References</h2>
     <dl>
         <dt id="ref-ionic">Ionic UI Components</dt>
         <dd property="schema:citation" typeof="schema:WebPage"

@@ -1,0 +1,589 @@
+@prefix : <http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix untitled-ontology-2: <http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#> .
+@base <http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2/> .
+
+<http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#contains
+untitled-ontology-2:contains rdf:type owl:ObjectProperty ;
+                             rdfs:domain untitled-ontology-2:Tags ;
+                             rdfs:range untitled-ontology-2:Tags .
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdfs:subPropertyOf untitled-ontology-2:contains .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#code
+untitled-ontology-2:code rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Button
+untitled-ontology-2:Ion_Button rdf:type owl:Class ;
+                               rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Card
+untitled-ontology-2:Ion_Card rdf:type owl:Class ;
+                             rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Card_Content
+untitled-ontology-2:Ion_Card_Content rdf:type owl:Class ;
+                                     rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Card_Header
+untitled-ontology-2:Ion_Card_Header rdf:type owl:Class ;
+                                    rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Card_Subtitle
+untitled-ontology-2:Ion_Card_Subtitle rdf:type owl:Class ;
+                                      rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Card_Title
+untitled-ontology-2:Ion_Card_Title rdf:type owl:Class ;
+                                   rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Col
+untitled-ontology-2:Ion_Col rdf:type owl:Class ;
+                            rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Content
+untitled-ontology-2:Ion_Content rdf:type owl:Class ;
+                                rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Element
+untitled-ontology-2:Ion_Element rdf:type owl:Class ;
+                                rdfs:subClassOf untitled-ontology-2:Tags .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Footer
+untitled-ontology-2:Ion_Footer rdf:type owl:Class ;
+                               rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Grid
+untitled-ontology-2:Ion_Grid rdf:type owl:Class ;
+                             rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Header
+untitled-ontology-2:Ion_Header rdf:type owl:Class ;
+                               rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Img
+untitled-ontology-2:Ion_Img rdf:type owl:Class ;
+                            rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Input
+untitled-ontology-2:Ion_Input rdf:type owl:Class ;
+                              rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Item
+untitled-ontology-2:Ion_Item rdf:type owl:Class ;
+                             rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_List
+untitled-ontology-2:Ion_List rdf:type owl:Class ;
+                             rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Row
+untitled-ontology-2:Ion_Row rdf:type owl:Class ;
+                            rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Ion_Title
+untitled-ontology-2:Ion_Title rdf:type owl:Class ;
+                              rdfs:subClassOf untitled-ontology-2:Ion_Element .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Page
+untitled-ontology-2:Page rdf:type owl:Class ;
+                         rdfs:subClassOf untitled-ontology-2:Tags .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Paragraph
+untitled-ontology-2:Paragraph rdf:type owl:Class ;
+                              rdfs:subClassOf untitled-ontology-2:Regular_Elements .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Regular_Elements
+untitled-ontology-2:Regular_Elements rdf:type owl:Class ;
+                                     rdfs:subClassOf untitled-ontology-2:Tags .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Tags
+untitled-ontology-2:Tags rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Button_1
+untitled-ontology-2:Button_1 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Button ;
+                             untitled-ontology-2:code "<ion-button></ion-button>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardContent_1
+untitled-ontology-2:CardContent_1 rdf:type owl:NamedIndividual ,
+                                           untitled-ontology-2:Ion_Card_Content ;
+                                  untitled-ontology-2:contains untitled-ontology-2:Paragraph ;
+                                  untitled-ontology-2:code """<ion-card-content>
+    <p></p>
+  </ion-card-content>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardContent_2
+untitled-ontology-2:CardContent_2 rdf:type owl:NamedIndividual ,
+                                           untitled-ontology-2:Ion_Card_Content ;
+                                  untitled-ontology-2:contains untitled-ontology-2:Image ,
+                                                               untitled-ontology-2:Input ;
+                                  untitled-ontology-2:code """<ion-card-content>
+     <ion-img src=\"\" alt=\"\"></ion-img>
+     <ion-input></ion-input>   
+  </ion-card-content>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardContent_3
+untitled-ontology-2:CardContent_3 rdf:type owl:NamedIndividual ,
+                                           untitled-ontology-2:Ion_Card_Content ;
+                                  untitled-ontology-2:contains untitled-ontology-2:Button_1 ,
+                                                               untitled-ontology-2:Image ;
+                                  untitled-ontology-2:code """<ion-card-content>
+       <ion-img src=\"\" alt=\"\"></ion-img>
+       <ion-button></ion-button>
+<ion-card-content>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardHeader_1
+untitled-ontology-2:CardHeader_1 rdf:type owl:NamedIndividual ,
+                                          untitled-ontology-2:Ion_Card_Header ;
+                                 untitled-ontology-2:contains untitled-ontology-2:CardSubtitle ,
+                                                              untitled-ontology-2:CardTitle ;
+                                 untitled-ontology-2:code """<ion-card-header>
+    <ion-card-title></ion-card-title>
+    <ion-card-subtitle></ion-card-subtitle>
+  </ion-card-header>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardHeader_2
+untitled-ontology-2:CardHeader_2 rdf:type owl:NamedIndividual ,
+                                          untitled-ontology-2:Ion_Card_Header ;
+                                 untitled-ontology-2:contains untitled-ontology-2:CardTitle ;
+                                 untitled-ontology-2:code """<ion-card-header>
+  <ion-card-title></ion-card-title>
+</ion-card-header>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardSubtitle
+untitled-ontology-2:CardSubtitle rdf:type owl:NamedIndividual ,
+                                          untitled-ontology-2:Ion_Card_Subtitle ;
+                                 untitled-ontology-2:code "<ion-card-subtitle></ion-card-subtitle>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#CardTitle
+untitled-ontology-2:CardTitle rdf:type owl:NamedIndividual ,
+                                       untitled-ontology-2:Ion_Card_Title ;
+                              untitled-ontology-2:code "<ion-card-title></ion-card-title>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Card_1
+untitled-ontology-2:Card_1 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Ion_Card ;
+                           untitled-ontology-2:contains untitled-ontology-2:CardContent_1 ,
+                                                        untitled-ontology-2:CardHeader_1 ;
+                           untitled-ontology-2:code """<ion-card>
+  <ion-card-header>
+    <ion-card-title></ion-card-title>
+    <ion-card-subtitle></ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p></p>
+  </ion-card-content>
+</ion-card>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Card_2
+untitled-ontology-2:Card_2 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Ion_Card ;
+                           untitled-ontology-2:contains untitled-ontology-2:CardContent_2 ,
+                                                        untitled-ontology-2:CardHeader_2 ;
+                           untitled-ontology-2:code """<ion-card>
+  <ion-card-header>
+    <ion-card-title></ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+     <ion-img src=\"\" alt=\"\"></ion-img>
+     <ion-input></ion-input>   
+  </ion-card-content>
+</ion-card>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Card_3
+untitled-ontology-2:Card_3 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Ion_Card ;
+                           untitled-ontology-2:contains untitled-ontology-2:CardContent_3 ;
+                           untitled-ontology-2:code """<ion-card>
+        <ion-card-content>
+            <ion-img src=\"\" alt=\"\"></ion-img>
+            <ion-button></ion-button>
+        <ion-card-content>
+    </ion-card>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Column_1
+untitled-ontology-2:Column_1 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Col ;
+                             untitled-ontology-2:code "<ion-col></ion-col>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Column_2
+untitled-ontology-2:Column_2 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Col ;
+                             untitled-ontology-2:code "<ion-col></ion-col>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Column_3
+untitled-ontology-2:Column_3 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Col ;
+                             untitled-ontology-2:code "<ion-col></ion-col>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Column_4
+untitled-ontology-2:Column_4 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Col ;
+                             untitled-ontology-2:code "<ion-col></ion-col>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Footer_1
+untitled-ontology-2:Footer_1 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Footer ;
+                             untitled-ontology-2:contains untitled-ontology-2:Title_1 ;
+                             untitled-ontology-2:code """<ion-footer>
+  <ion-title></ion-title>
+ </ion-footer>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Footer_2
+untitled-ontology-2:Footer_2 rdf:type owl:NamedIndividual ,
+                                      untitled-ontology-2:Ion_Footer ;
+                             untitled-ontology-2:contains untitled-ontology-2:Paragraph ;
+                             untitled-ontology-2:code """<ion-footer>
+    <p></p>
+<ion-footer>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Grid_1
+untitled-ontology-2:Grid_1 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Ion_Grid ;
+                           untitled-ontology-2:contains untitled-ontology-2:Row_1 ,
+                                                        untitled-ontology-2:Row_2 ,
+                                                        untitled-ontology-2:Row_3 ;
+                           untitled-ontology-2:code """<ion-grid>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-grid>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Image
+untitled-ontology-2:Image rdf:type owl:NamedIndividual ,
+                                   untitled-ontology-2:Ion_Img ;
+                          untitled-ontology-2:code "<ion-img src=\"\" alt=\"\"></ion-img>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Input
+untitled-ontology-2:Input rdf:type owl:NamedIndividual ,
+                                   untitled-ontology-2:Ion_Input ;
+                          untitled-ontology-2:code "<ion-input></ion-input>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#ListItem_1
+untitled-ontology-2:ListItem_1 rdf:type owl:NamedIndividual ,
+                                        untitled-ontology-2:Ion_Item ;
+                               untitled-ontology-2:contains untitled-ontology-2:Paragraph ;
+                               untitled-ontology-2:code """<ion-item>
+  <p></p>  
+</ion-item>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#ListItem_2
+untitled-ontology-2:ListItem_2 rdf:type owl:NamedIndividual ,
+                                        untitled-ontology-2:Ion_Item ;
+                               untitled-ontology-2:contains untitled-ontology-2:Paragraph ;
+                               untitled-ontology-2:code """<ion-item>
+  <p></p>  
+</ion-item>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#ListItem_3
+untitled-ontology-2:ListItem_3 rdf:type owl:NamedIndividual ,
+                                        untitled-ontology-2:Ion_Item ;
+                               untitled-ontology-2:contains untitled-ontology-2:Paragraph ;
+                               untitled-ontology-2:code """<ion-item>
+  <p></p>  
+</ion-item>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#List_1
+untitled-ontology-2:List_1 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Ion_List ;
+                           untitled-ontology-2:contains untitled-ontology-2:ListItem_1 ,
+                                                        untitled-ontology-2:ListItem_2 ,
+                                                        untitled-ontology-2:ListItem_3 ;
+                           untitled-ontology-2:code """<ion-list>
+  <ion-item>
+    <p></p>  
+  </ion-item>
+  
+  <ion-item>
+    <p></p>  
+  </ion-item>
+
+  <ion-item>
+    <p></p>  
+  </ion-item>
+</ion-list>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#PageContent_1
+untitled-ontology-2:PageContent_1 rdf:type owl:NamedIndividual ,
+                                           untitled-ontology-2:Ion_Content ;
+                                  untitled-ontology-2:contains untitled-ontology-2:Grid_1 ,
+                                                               untitled-ontology-2:Paragraph ;
+                                  untitled-ontology-2:code """<ion-content>
+
+  <p></p>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+<ion-content>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#PageContent_2
+untitled-ontology-2:PageContent_2 rdf:type owl:NamedIndividual ,
+                                           untitled-ontology-2:Ion_Content ;
+                                  untitled-ontology-2:contains untitled-ontology-2:Image ,
+                                                               untitled-ontology-2:List_1 ;
+                                  untitled-ontology-2:code """<ion-content>
+
+  <ion-img src=\"\" alt=\"\"></ion-img>
+
+  <ion-list>
+    <ion-item>
+      <p></p>  
+    </ion-item>
+  
+    <ion-item>
+      <p></p>  
+    </ion-item>
+
+    <ion-item>
+      <p></p>  
+    </ion-item>
+  </ion-list>
+
+<ion-content>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#PageContent_3
+untitled-ontology-2:PageContent_3 rdf:type owl:NamedIndividual ,
+                                           untitled-ontology-2:Ion_Content ;
+                                  untitled-ontology-2:contains untitled-ontology-2:Card_3 ;
+                                  untitled-ontology-2:code """<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <ion-img src=\"\" alt=\"\"></ion-img>
+            <ion-button></ion-button>
+        <ion-card-content>
+    </ion-card>
+<ion-content>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#PageHeader_1
+untitled-ontology-2:PageHeader_1 rdf:type owl:NamedIndividual ,
+                                          untitled-ontology-2:Ion_Header ;
+                                 untitled-ontology-2:contains untitled-ontology-2:Title_1 ;
+                                 untitled-ontology-2:code """<ion-header>
+  <ion-title></ion-title>
+</ion-header>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Page_1
+untitled-ontology-2:Page_1 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Page ;
+                           untitled-ontology-2:contains untitled-ontology-2:Footer_2 ,
+                                                        untitled-ontology-2:PageContent_3 ,
+                                                        untitled-ontology-2:PageHeader_1 ;
+                           untitled-ontology-2:code """<ion-header>
+    <ion-title></ion-title>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <ion-img src=\"\" alt=\"\"></ion-img>
+            <ion-button></ion-button>
+        <ion-card-content>
+    </ion-card>
+<ion-content>
+<ion-footer>
+    <p></p>
+<ion-footer>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Page_2
+untitled-ontology-2:Page_2 rdf:type owl:NamedIndividual ,
+                                    untitled-ontology-2:Page ;
+                           untitled-ontology-2:contains untitled-ontology-2:Footer_2 ,
+                                                        untitled-ontology-2:PageContent_2 ,
+                                                        untitled-ontology-2:PageHeader_1 ;
+                           untitled-ontology-2:code """<ion-header>
+    <ion-title></ion-title>
+</ion-header>
+<ion-content>
+  <ion-img src=\"\" alt=\"\"></ion-img>
+  <ion-list>
+    <ion-item>
+      <p></p>  
+    </ion-item>
+    <ion-item>
+      <p></p>  
+    </ion-item>
+    <ion-item>
+      <p></p>  
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+    <p></p>
+</ion-footer>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Paragraph
+untitled-ontology-2:Paragraph rdf:type owl:NamedIndividual ,
+                                       untitled-ontology-2:Paragraph ;
+                              untitled-ontology-2:code "<p></p>" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Row_1
+untitled-ontology-2:Row_1 rdf:type owl:NamedIndividual ,
+                                   untitled-ontology-2:Ion_Row ;
+                          untitled-ontology-2:contains untitled-ontology-2:Column_1 ,
+                                                       untitled-ontology-2:Column_2 ,
+                                                       untitled-ontology-2:Column_3 ,
+                                                       untitled-ontology-2:Column_4 ;
+                          untitled-ontology-2:code """<ion-row>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+</ion-row>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Row_2
+untitled-ontology-2:Row_2 rdf:type owl:NamedIndividual ,
+                                   untitled-ontology-2:Ion_Row ;
+                          untitled-ontology-2:contains untitled-ontology-2:Column_1 ,
+                                                       untitled-ontology-2:Column_2 ,
+                                                       untitled-ontology-2:Column_3 ,
+                                                       untitled-ontology-2:Column_4 ;
+                          untitled-ontology-2:code """<ion-row>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+</ion-row>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Row_3
+untitled-ontology-2:Row_3 rdf:type owl:NamedIndividual ,
+                                   untitled-ontology-2:Ion_Row ;
+                          untitled-ontology-2:contains untitled-ontology-2:Column_1 ,
+                                                       untitled-ontology-2:Column_2 ,
+                                                       untitled-ontology-2:Column_3 ,
+                                                       untitled-ontology-2:Column_4 ;
+                          untitled-ontology-2:code """<ion-row>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+</ion-row>""" .
+
+
+###  http://www.semanticweb.org/pc/ontologies/2024/0/untitled-ontology-2#Title_1
+untitled-ontology-2:Title_1 rdf:type owl:NamedIndividual ,
+                                     untitled-ontology-2:Ion_Title ;
+                            untitled-ontology-2:code "<ion-title></ion-title>" .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
