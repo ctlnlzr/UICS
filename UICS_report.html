@@ -32,7 +32,8 @@
     </li>
     <li><a href="#userInteraction"><span>4. </span>User Interaction</a></li>
     <li><a href="#languageAndOntology"><span>5. </span>Controlled language & Ontology</a></li>
-    <li><a href="#biblio-references"><span>6. </span>References</a></li>
+    <li><a href="#projectProgress"><span>6. </span>Project Progress</a></li>
+    <li><a href="#biblio-references"><span>7. </span>References</a></li>
 </ol>
 
 <div role="contentinfo">
@@ -59,8 +60,7 @@
         within UI component APIs, leveraging popular framework <a role="doc-biblioref" href="#ref-ionic"> Ionic UI Components</a>,
         particularly in the context of Angular applications. The developed knowledge model employs controlled language
         constructs, offering the means to specify design intentions using keywords. It is designed to intelligently
-        generate web interface controls through a SPARQL endpoint, facilitating the creation of sections
-        with defined roles.
+        generate web interface controls through a SPARQL endpoint, facilitating the creation of sections.
     </p>
 </section>
 <section id="introduction" role="doc-introduction">
@@ -72,10 +72,10 @@
     </p>
 
     <p>
-        The motivation cone from the need to provide designers a more semantically rich means of specifying web elements.
-        To achieve this, we propose the development of an ontology grounded in <a role="doc-biblioref" href="ref-own"> OWL </a>,
+        The motivation comes from the need to provide designers a more semantically rich mean of specifying web elements.
+        To achieve this, we propose the development of an ontology grounded in <a role="doc-biblioref" href="ref-own"> OWL</a>,
         offering a structured knowledge model. This model, using controlled language constructs,
-        enables the utilization of descriptive keywords and parameters to express design requirements.
+        enables the utilization of descriptive keywords to express design requirements.
         By utilizing a SPARQL endpoint, the ontology aims to intelligently interpret these specifications and generate
         appropriate controls.
     </p>
@@ -84,8 +84,6 @@
         Through this project, we present a practical validation through the implementation
         and testing of the proposed ontology in at least two distinct use cases.
     </p>
-
-
 </section>
 <section id="overview">
     <!-- review? -->
@@ -125,16 +123,93 @@
             The RDF storage system is used for persistently storing and managing Resource Description Framework
             (RDF) data, namely the ontology we create to express the relations between Ionic UI components.
             Apache Jena Fuseki serves as the database engine.
-
         <p>
-        <p>    
-        Fuseki operates as a dedicated SPARQL server, serving as the backend component for processing SPARQL queries received at its endpoint via a POST request and delivering the corresponding query results.
+        Fuseki stores the relationship and individuals defined using our ontology. At the same time it operates as a dedicated SPARQL server,
+        serving as the backend component for processing SPARQL queries received at its endpoint via a POST request
+        and delivering the corresponding query results.
         </p>
-        </p>
-        Fuseki is linked to our ontology and when a user formulates a request grounded in our ontology, Fuseki executes the corresponding SPARQL query onto our ontology. Upon successful execution, Fuseki returns the results in JSON format, encapsulating the queried data as code snippets relevant to the user's request.
 
-        </p>
-            <h3>Cache Storage (MySQL)</h3>
+        <h3> Examples of SPARQL queries and results: </h3>
+        <p> First query description: <br>
+        Code for a page which includes a header, the content and a footer.
+        The header contains a title. The content includes a card with a card content inside which is an image and a button.
+        The footer contains a paragraph.</p>
+        <pre><code>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX uics-ontology-2: &lt;http://www.semanticweb.org/pc/ontologies/2024/0/uics-ontology-2#>
+SELECT ?code
+WHERE {
+  ?page rdf:type uics-ontology-2:Page.
+  ?page uics-ontology-2:contains ?header, ?content, ?footer.
+  ?header rdf:type uics-ontology-2:Ion_Header.
+  ?header uics-ontology-2:contains ?title.
+  ?title rdf:type uics-ontology-2:Ion_Title.
+  ?content rdf:type uics-ontology-2:Ion_Content.
+  ?content uics-ontology-2:contains ?card.
+  ?card rdf:type uics-ontology-2:Ion_Card.
+  ?card uics-ontology-2:contains ?cardContent.
+  ?cardContent rdf:type uics-ontology-2:Ion_Card_Content.
+  ?cardContent uics-ontology-2:contains ?img, ?button.
+  ?img rdf:type uics-ontology-2:Ion_Img.
+  ?button rdf:type uics-ontology-2:Ion_Button.
+  ?footer rdf:type uics-ontology-2:Ion_Footer.
+  ?footer uics-ontology-2:contains ?paragraph.
+  ?paragraph rdf:type uics-ontology-2:Paragraph.
+  ?page uics-ontology-2:code ?code.
+  }
+  LIMIT 1</code></pre>
+        <p>Result:</p>
+        <pre><code>
+&lt;ion-header&gt;
+      &lt;ion-title&gt; &lt;/ion-title&gt;
+&lt;/ion-header&gt;
+&lt;ion-content&gt;
+      &lt;ion-card&gt;
+            &lt;ion-card-content&gt;
+                  &lt;ion-img src="" alt=""&gt;&lt;/ion-img&gt;
+                  &lt;ion-button>&lt;/ion-button&gt;
+            &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+&lt;/ion-content&gt;
+&lt;ion-footer&gt;
+      &lt;p&gt; &lt;/p&gt;
+&lt;/ion-footer&gt;</code></pre>
+
+    <p> Second query description:<br>
+        Code for a card which contains a header and a card content.
+        The header includes a title and a subtitle.
+        The card content includes a paragraph.
+    </p>
+        <pre><code>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX uics-ontology-2: &lt;http://www.semanticweb.org/pc/ontologies/2024/0/uics-ontology-2#>
+SELECT ?code
+WHERE {
+  ?card rdf:type uics-ontology-2:Ion_Card.
+  ?card uics-ontology-2:contains ?cardHeader, ?cardContent.
+  ?cardHeader rdf:type uics-ontology-2:Ion_Card_Header.
+  ?cardHeader uics-ontology-2:contains ?cardTitle, ?cardSubtitle.
+  ?cardTitle rdf:type uics-ontology-2:Ion_Card_Title.
+  ?cardSubtitle rdf:type uics-ontology-2:Ion_Card_Subtitle.
+  ?cardContent rdf:type uics-ontology-2:Ion_Card_Content.
+  ?cardContent uics-ontology-2:contains ?paragraph.
+  ?paragraph rdf:type uics-ontology-2:Paragraph.
+  ?card uics-ontology-2:code ?code.
+}
+LIMIT 1</code></pre>
+        <p>Result:</p>
+        <pre><code>
+&lt;ion-card&gt;
+      &lt;ion-card-header&gt;
+            &lt;ion-card-title&gt; &lt;/ion-card-title&gt;
+            &lt;ion-card-subtitle&gt; &lt;/ion-card-subtitle&gt;
+      &lt;/ion-card-header&gt;
+      &lt;ion-card-content&gt;
+            &lt;p&gt; &lt;/p&gt;
+      &lt;/ion-card-content&gt;
+&lt;/ion-card&gt;</code></pre>
+
+        <h3>Cache Storage (MySQL)</h3>
             In addition to the RDF storage, UICS utilizes a MySQL-based Cache Storage system. This system provides a
             quick and efficient means of storing and retrieving frequently accessed data, optimizing the performance of
             the backend processes.
@@ -149,9 +224,7 @@
                         <p>Unique identifier for each conversion.</p>
                     </li>
                 </ul>
-            </p>
-            <p>
-                Operations supported:
+            <p>Operations supported: </p>
                 <ul>
                     <li>
                         <h5>Store Conversions</h5>
@@ -178,9 +251,6 @@
                         </p>
                     </li>
                 </ul>
-            </p>
-        </p>
-        </p>
     </section>
     <section id="frontend">
         <h3><span>3.2. </span>Frontend Architecture</h3>
@@ -297,6 +367,63 @@
                         language, and converts them into SPARQL queries. It collaborates with the POST handler to process user
                         input effectively.
                     </p>
+                    <b>Chat GPT Integration</b>
+                    <p>
+                        The integration of ChatGPT into the project aims to transform natural language input for
+                        generating SPARQL queries based on our ontology.
+                    </p>
+                    <ul>
+                        <li>
+                            <h5>Creating Ontology Awareness and Training the AI</h5>
+                            <p>
+                                The initial step involves sending of a system message sent to ChatGPT to inform it about the ontology used in the project and the structure and relationships within the knowledge base.
+                                This ensures that ChatGPT is aware of the specific data structure and relationships defined in the ontology.
+                            </p>
+                            <p>
+                                Following this, we initiate the training process. Training questions, specifically designed to cover aspects of SPARQL query generation,
+                                are presented to ChatGPT along with their corresponding answers.
+                            </p>
+                        </li>
+                        <li>
+                            <h5>User Input Processing</h5>
+                            <p>
+                                When a user provides input in the form of natural language descriptions, it is passed to ChatGPT along with the ontology information and is
+                                processed using the knowledge from the ontology and the learned patterns from the training questions.
+                            </p>
+                            <p>
+                                    As the user interacts with the system, their natural language
+                                    input is processed through ChatGPT, utilizing a chat-based completion approach.
+
+                                With this approach, we are instructing the model by including system, user, and assistant messages in a back-and-forth conversation.
+                                The model then generates responses based on the entire context of the conversation, making it suitable for our application.
+                            </p>
+                        </li>
+                        <li>
+                            <h5> Query Generation</h5>
+                            <p>
+                                ChatGPT processes the input using its trained model and generates SPARQL queries based on the ontology and the learned patterns from the training data.
+                            </p>
+                        </li>
+                    </ul>
+                    <br>
+                    <p> On the other hand, there is a list of rules that need to be taken into consideration when the user is writing the request: </p>
+                        <ul>
+                            <li>
+                                <h5>The user must use clear and specific terms when referring to ontology entities. For instance, when mentioning a card in the ontology, use phrases like "card" or "title"</h5>
+                            </li>
+                            <li>
+                                <h5>
+                                    If involving multiple entities, the user must describe their relationships explicitly: "Create a template for an card with an image and an input contained in an card content."
+                                </h5>
+                            </li>
+                            <li>
+                                <h5>The user must use the ontology's hierarchical structure in descriptions to  minimize ambiguity:
+                                    "Create the code for a card which contains a header with a title and a subtitle and also a card content with a paragraph."</h5>
+                            </li>
+                            <li>
+                                <h5>The user must use verbs like "create", "contains", "include" or other synonyms when expressing relationships or containment. Example: "Create a template for an card containing an image and an input."</h5>
+                            </li>
+                        </ul>
                 </li>
                 <li>
                     <h5>Query Executor</h5>
@@ -445,73 +572,10 @@
                 <figcaption>OpenAPI Specification - UI Component Smart Generator API</figcaption>
             </figure>
         </section>
-        <section id="apiSpecification">
-            <h4><span>3.3.3. </span>Tehnical Details</h4>
-            <h3>Chat GPT Integration</h3>
-            <p>
-                The integration of ChatGPT into the project aims to transform natural language input for 
-                generating SPARQL queries based on our ontology.
-            </p>
-            <ul>
-                <li>
-                    <h5>Creating Ontology Awareness and Training the AI</h5>
-                    <p>
-                        The initial step involves sending of a system message sent to ChatGPT to inform it about the ontology used in the project and the structure and relationships within the knowledge base.
-                        This ensures that ChatGPT is aware of the specific data structure and relationships defined in the ontology.
-                    </p>
-                    <p>
-                        Following this, we initiate the training process. Training questions, specifically designed to cover aspects of SPARQL query generation, 
-                        are presented to ChatGPT along with their corresponding answers. 
-                    </p>
-                </li>
-                <li>
-                    <h5>User Input Processing</h5>
-                    <p>
-                        When a user provides input in the form of natural language descriptions, it is passed to ChatGPT along with the ontology information and is
-                        processed using the knowledge from the ontology and the learned patterns from the training questions.
-                    </p>
-                    <p>
-                            As the user interacts with the system, their natural language 
-                            input is processed through ChatGPT, utilizing a chat-based completion approach.
-
-                        With this approach, we are instructing the model by including system, user, and assistant messages in a back-and-forth conversation. 
-                        The model then generates responses based on the entire context of the conversation, making it suitable for our application.
-                    </p>
-                </li>
-                <li>
-                    <h5> Query Generation</h5>
-                    <p>
-                        ChatGPT processes the input using its trained model and generates SPARQL queries based on the ontology and the learned patterns from the training data.
-                    </p>
-                </li>
-            </ul>
-            <br>
-            <p>
-                On the other hand, there is a list of rules that need to be taken into consideration when the user is writing the request:
-                <ul>
-                    <li>
-                        <h5>The user must use clear and specific terms when referring to ontology entities. For instance, when mentioning a card in the ontology, use phrases like "card" or "title"</h5>
-                    </li>
-                    <li>
-                        <h5>
-                            If involving multiple entities, the user must describe their relationships explicitly: "Create a template for an card with an image and an input contained in an card content."
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>The user must use the ontology's hierarchical structure in descriptions to  minimize ambiguity:
-                            "Create the code for a card which contains a header with a title and a subtitle and also a card content with a paragraph."</h5>
-                    </li>
-                    <li>
-                        <h5>The user must use verbs like "create", "contains", "include" or other synonyms when expressing relationships or containment. Example: "Create a template for an card containing an image and an input."</h5>
-                    </li>
-                </ul>
-            </p>
-
-        </section>
-    <section id="apiSpecification">
+        <section id="deployment">
         <h4><span>3.3.4. </span>Deployment</h4>
         <p>    
-            For deploying our project, we employed two distinct platforms: GitHub Pages for hosting the frontend and Render for deploying the Fuseki server.
+            For deploying our project, we employed two distinct platforms: GitHub Pages for hosting the frontend and Render for deploying the Fuseki server and the backend server.
         </p>
             <h5>Deploying the Fuseki Server on Render</h5>
             <ul>
@@ -519,23 +583,39 @@
                     <h5>Docker Image Creation</h5>
                     <p>
                         We utilized Docker to create a containerized image of the Fuseki server, ensuring consistent deployment across different environments. 
-                        The Docker image encapsulates the necessary configurations and dependencies for running the Fuseki server
+                        The Docker image encapsulates the necessary configurations and dependencies for running the Fuseki server. This triplestore is initialized
+                        using a Turtle configuration file which contains some individuals created based on our ontology.
                     </p>
                 </li>
+            </ul>
+            <h5>Deploying Backend Server on Render</h5>
+            <ul>
                 <li>
-                    <h5>Render Configuration and Environment Variables</h5>
                     <p>
-                        During the configuration process, we specified the Docker image as the build source,and we also
-                        configured environment variables on Render to provide necessary configurations for the Fuseki server, such as endpoint details.
+                        We deployed the backend server as a WEB Service, using a feature which allowed us to deploy the
+                        server directly from our Github repository. As for configurations, we had to set the environmental variables,
+                        as the OpenAI API key, and the command which start the server.
+                        Regarding technical configuration, the server runs on 0.1 CPU and 512Mb memory.
                     </p>
                 </li>
             </ul>
             <h5>Deploying Frontend on GitHub Pages</h5>
             <ul>
                 <li>
+                    <h5>Motivation</h5>
+                    <p>
+                        While the resources provided by Render (i.e. 0.1 CPU/512Mb memory) are enough for the Backend and Apache Jena Fuseki servers,
+                        the Frontend server uses more than 512Mb. The main reason for the increased memory usage is using the Angular Framework to develop
+                        the server.<br>
+                        On the other hand, Github offers a deployment solution easy to use for Angular app deployment with no
+                        concerning restrictions related to resource usage.
+                    </p>
+                </li>
+                <li>
                     <h5>GitHub Pages Setup and Branch Configuration</h5>
                     <p>
-                        The frontend code is hosted directly from the GitHub repository, simplifying the deployment process, and by specifying the main branch or any other target branch, GitHub Pages automatically deploys the latest version of the frontend whenever changes are pushed.
+                        The frontend code is hosted directly from the GitHub repository, simplifying the deployment process, and by specifying
+                        the main branch or any other target branch, GitHub Pages automatically deploys the latest version of the frontend whenever changes are pushed.
                     </p>
                 </li>
             </ul>
@@ -564,8 +644,7 @@
         specifically utilizing Ionic UI Components. After conversion, the code is returned to the User on an output area
         from Main Page for display.
     </p>
-    <p>
-        The UICS application comprises three essential components distributed across two main pages
+    <p> The UICS application comprises three essential components distributed across two main pages </p>
         <ul>
             <li>
                 <h5>Main page</h5>
@@ -594,7 +673,6 @@
                 </p>
             </li>
         </ul>
-    </p>
 
 </section>
 <section id="ontology"><h2><span>5. </span>Ontology</h2>
@@ -603,13 +681,19 @@
         formalizing the semantics of key elements within the Ionic Framework. This section provides an overview of
         the key components.
     </p>
-
+    
     <p>
-        Within the ontology, each Ionic UI component is modeled as a class, forming a structured hierarchy that reflects
-        their organizational relationships. For instance, the class structure represents the parent-child relationship
-        between ion-card and ion-card-content. This hierarchical structure facilitates efficient navigation and retrieval of
-        information about the components and their interdependencies.
+        The ontology was design with Protégé editor. Our class hierarchy derives from the main class (<i>owl:Thing</i>)
+        with <b>Tags</b> class which becomes the root of our ontology. From Tags derives <b>Page</b>, <b>Ion_Element</b>
+        and <b>Regular_Element</b>.<br>
+        <i>Page</i> acts as the principal bundle for the elements of the first layer (i.e. Ion-Header, Ion-Content And Ion-Footer).
+        <i>Ion_Element</i> and <i>Regular_Element</i> are the root classes for the elements from Ionic Framework, respectively for
+        basic HTML tags. Currently, these classes are upper class for 18 components and can be easily extended.<br>
+        In order to specify the hierarchical relationship among individuals, we declared <b>contains</b> object property with Tags as
+        domain and range.
+        Each individual has a data property called <b>code</b> which describes the actual code representation of the individual.
     </p>
+
     <h4>List of Ionic UI components used in UICS project</h4>
     <ul>
 
@@ -746,307 +830,16 @@
                 used to describe the screen or section a user is currently on or the app being used.
             </p>
         </li>
-    </ul>
-
-    <p>
-        This ontology represents a set of components and their hierarchies within the Ionic framework, organized 
-        into cards, content, headers, grids, lists, and other UI elements.
-        Each component has specific assertions about its composition and structure. 
-    </p>
-
-    <p>
-        <h3>Hierarchical structure of the onotology</h3>
-    <ul>
         <li>
-            <h5>Header</h5>
-            <ul>
-                <li>
-                    Title
-                </li>
-                <li>
-                    Paragraph
-                </li>
-            </ul>
-        </li>
-        <li>
-            <h5>Content-Card</h5>
-            <ul>
-                <li>
-                    Card Header
-                    <ul>
-                        <li>
-                            Card Title
-                            <ul>
-                                <li>
-                                    Card Subtitle
-                                </li>
-                                <li>
-                                    Card Content
-                                    <ul>
-                                        <li>
-                                            Grid
-                                            <ul>
-                                                <li>
-                                                    Row
-                                                    <ul>
-                                                        <li>
-                                                            Column
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <li>
-                                                List
-                                                <ul>
-                                                    <li>
-                                                        Item
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                Image
-                                            </li>
-                                            <li>
-                                                Input
-                                            </li>
-                                            <li>
-                                                Button
-                                            </li>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Card Footer
-                                </li>
-                            </ul>
-                            
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Grid
-                    <ul>
-                        <li>
-                            Row
-                            <ul>
-                                <li>
-                                    Column
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    List
-                    <ul>
-                        <li>
-                            Item
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Image
-                </li>
-                <li>
-                    Input
-                </li>
-                <li>
-                    Button
-                </li>
-                <li>
-                    Paragraph
-                </li>
-            </ul>
-        </li>
-        <li>
-            <h5>Footer</h5>
-            <ul>
-                <li>
-                    Paragraph
-                </li>
-            </ul>
+            <h5><a role="doc-biblioref" href="#ref-ionic">ion-button</a></h5>
+            <p>
+                Buttons provide a clickable element, which can be used in forms, or anywhere that needs simple,
+                standard button functionality. They may display text, icons, or both.
+            </p>
         </li>
     </ul>
-    </p>
-
-    <h4>Examples of Ionic framework components and their relationships within the project</h4>
-    <ul>
-        <li>
-            <h5>Card_1</h5> 
-            <p> 
-                Object property assertions: contains CardContent_1 and CardHeader_1
-            <pre>
-    &lt;ion-card&gt;
-        &lt;ion-card-header&gt;
-            &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
-            &lt;ion-card-subtitle&gt;&lt;/ion-card-subtitle&gt;
-        &lt;/ion-card-header&gt;
-                           
-        &lt;ion-card-content&gt;
-            &lt;p&gt;&lt;/p&gt;
-        &lt;/ion-card-content&gt;
-    &lt;/ion-card&gt;	
-            </pre>
-            </p>
-        </li>
-        <li>
-            <h5>Card_2</h5>
-            <p>
-                Object property assertions: contains CardContent_2 and CardHeader_2
-            <pre>
-    &lt;ion-card&gt;
-        &lt;ion-card-header&gt;
-            &lt;ion-card-title&gt;&lt;/ion-card-title&gt;
-        &lt;/ion-card-header&gt;
-                
-        &lt;ion-card-content&gt;
-            &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
-            &lt;ion-input&gt;&lt;/ion-input&gt;   
-        &lt;/ion-card-content&gt;
-    &lt;/ion-card&gt;
-            </pre>
-            </p>
-        </li>
-    
-        <li>
-            <h5>Footer</h5>  
-            <p>
-                Object property assertions: contains Title_1
-            <pre>
-    &lt;ion-footer&gt;
-        &lt;ion-title&gt;&lt;/ion-title&gt;
-    &lt;/ion-footer&gt;
-            </pre>
-            </p>
-        </li>
-        <li>
-            <h5>Grid</h5>  
-            <p>
-                Object property assertions: contains Row_2, Row_1, Row_3
-                <pre>
-    &lt;ion-grid&gt;
-        &lt;ion-row&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-        &lt;/ion-row&gt;
-                    
-        &lt;ion-row&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-        &lt;/ion-row&gt;
-                    
-        &lt;ion-row&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;ion-col&gt;&lt;/ion-col&gt;
-        &lt;/ion-row&gt;
-    &lt;/ion-grid&gt;
-                </pre>
-            </p>
-        </li>
-       
-        <li>
-            <h5>List_1</h5>  
-            <p>
-                Object property assertions: contains ListItem_1, ListItem_2, ListItem_3
-            <pre>
-    &lt;ion-list&gt;
-        &lt;ion-item&gt;
-            &lt;p&gt;&lt;/p&gt;  
-        &lt;/ion-item&gt;
-            
-        &lt;ion-item&gt;
-            &lt;p&gt;&lt;/p&gt;  
-        &lt;/ion-item&gt;
-            
-        &lt;ion-item&gt;
-            &lt;p&gt;&lt;/p&gt;  
-        &lt;/ion-item&gt;
-    &lt;/ion-list&gt;
-            </pre>
-            </p>
-        </li>
-        <li>
-            <h5>PageContent_1</h5>  
-            <p>
-                Object property assertions: contains Grid_1 and Paragraph
-            <pre>
-    &lt;ion-content&gt;
-            
-        &lt;p&gt;&lt;/p&gt;
-            
-        &lt;ion-grid&gt;
-            &lt;ion-row&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;/ion-row&gt;
-            
-            &lt;ion-row&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;/ion-row&gt;
-            
-            &lt;ion-row&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-                &lt;ion-col&gt;&lt;/ion-col&gt;
-            &lt;/ion-row&gt;
-        &lt;/ion-grid&gt;
-            
-    &lt;/ion-content&gt;
-            </pre>
-        </p>
-        </li>
-        <li>
-            <h5>PageContent_2</h5>  
-            <p>
-                Object property assertions: contains Image and List_1
-                <pre>
-    &lt;ion-content&gt;        
-    &lt;ion-img src=\"\" alt=\"\"&gt;&lt;/ion-img&gt;
-                    
-    &lt;ion-list&gt;
-        &lt;ion-item&gt;
-        &lt;p&gt;&lt;/p&gt;  
-        &lt;/ion-item&gt;
-                    
-        &lt;ion-item&gt;
-        &lt;p&gt;&lt;/p&gt;  
-        &lt;/ion-item&gt;
-                    
-        &lt;ion-item&gt;
-        &lt;p&gt;&lt;/p&gt;  
-        &lt;/ion-item&gt;
-    &lt;/ion-list&gt;
-                    
-    &lt;/ion-content&gt;
-                </pre>
-        </p>
-        </li>
-        <li>
-            <h5>PageHeader_1</h5>  
-            <p>
-                Object property assertions: contains Title_1
-            <pre>
-    &lt;ion-header&gt;
-        &lt;ion-title&gt;&lt;/ion-title&gt;
-    &lt;/ion-header&gt;
-            </pre>
-        </p>
-    </ul>
-
-    
-
+</section>
+<section id="projectProgress"><h2><span>7. </span> Project Progress</h2>
 
 </section>
 <section id="biblio-references"><h2><span>6. </span>References</h2>
