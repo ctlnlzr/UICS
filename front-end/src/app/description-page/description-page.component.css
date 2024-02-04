@@ -18,6 +18,10 @@
     justify-content: space-around;
     align-items: center;
     color: azure;
+
+    padding: 3em;
+    display: inline-block;
+    overflow: auto;
 }
 
 .text-title {
@@ -29,3 +33,55 @@
 .text {
     font-size: large;
 }
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+.tree-invisible {
+  display: none;
+}
+
+.tree {
+    background-color: rgb(19, 77, 19);
+    color: azure;
+}
+
+.tree ul,
+.tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+/*
+ * This padding sets alignment of the nested nodes.
+ */
+.tree .mat-nested-tree-node div[role=group] {
+  padding-left: 40px;
+}
+
+/*
+ * Padding for leaf nodes.
+ * Leaf nodes need to have padding so as to align with other non-leaf nodes
+ * under the same parent.
+ */
+.tree div[role=group] > .mat-tree-node {
+  padding-left: 40px;
+}
+
+.node-name-color {
+    color: azure;
+}
+
